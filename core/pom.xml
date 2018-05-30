@@ -7,7 +7,7 @@
     <url>https://github.com/CastInfo/robotest</url>        
     <packaging>jar</packaging>
     <parent>
-        <groupId>com.castinfo.devops</groupId>
+        <groupId>com.cast-info.devops</groupId>
         <artifactId>robotest-bom</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>

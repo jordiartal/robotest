@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.castinfo.devops</groupId>
+    <groupId>com.cast-info.devops</groupId>
     <artifactId>robotest-bom</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>ROBOTEST Bill of Materials.</description>
@@ -801,7 +801,7 @@
                         <artifactId>build-helper-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>com.castinfo.devops</groupId>
+                        <groupId>com.cast-info.devops</groupId>
                         <artifactId>robotest-suite-cases-json-generator</artifactId>
                         <version>${project.version}</version>
                         <!-- Add all dependencies that your test cases import -->
@@ -909,7 +909,7 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>com.castinfo.devops</groupId>
+                                            <groupId>com.cast-info.devops</groupId>
                                             <artifactId>robotest-standalone-suite-report-ui</artifactId>
                                             <version>${project.version}</version>
                                             <overWrite>true</overWrite>
@@ -935,7 +935,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.castinfo.devops</groupId>
+                    <groupId>com.cast-info.devops</groupId>
                     <artifactId>robotest-core</artifactId>
                     <version>${project.version}</version>
                     <scope>test</scope>
@@ -1004,7 +1004,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.castinfo.devops</groupId>
+                    <groupId>com.cast-info.devops</groupId>
                     <artifactId>robotest-core</artifactId>
                     <version>${project.version}</version>
                     <scope>test</scope>

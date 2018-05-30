@@ -157,7 +157,7 @@ MAVEN **Bill of Materials** parent POM is the simplest way to start ROBOTEST int
     
 ```xml
     <parent>
-        <groupId>com.castinfo.devops.robotest</groupId>
+        <groupId>com.cast-info.devops.robotest</groupId>
         <artifactId>robotest-bom</artifactId>
         <version>${robotest.version}</version>
     </parent>

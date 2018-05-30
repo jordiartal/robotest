@@ -7,13 +7,13 @@
     <url>https://github.com/CastInfo/robotest</url>
     <packaging>maven-plugin</packaging>
     <parent>
-        <groupId>com.castinfo.devops</groupId>
+        <groupId>com.cast-info.devops</groupId>
         <artifactId>robotest-bom</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
     <dependencies>
         <dependency>
-            <groupId>com.castinfo.devops</groupId>
+            <groupId>com.cast-info.devops</groupId>
             <artifactId>robotest-core</artifactId>
             <version>${project.version}</version>
         </dependency>
