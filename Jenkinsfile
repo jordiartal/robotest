@@ -15,7 +15,7 @@ pipeline {
     parameters {
         string(name: 'URL_SCM', defaultValue: "https://github.com/CastInfo/robotest.git", description: 'Project SCM url.')
         string(name: 'SCM_CREDENTIALS', description: 'SCM Credentials.')
-        string(name: 'SCM_BRANCH', defaultValue: "develop", description: 'SCM branch.')
+        string(name: 'SCM_BRANCH', defaultValue: "master", description: 'SCM branch.')
         booleanParam(name: 'INSTALL_BOM', defaultValue: false, description: 'Mvn install bom')
         booleanParam(name: 'INSTALL_CORE', defaultValue: false, description: 'Mvn install core')
         booleanParam(name: 'INSTALL_GENERATOR', defaultValue: false, description: 'Mvn install generator')

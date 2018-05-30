@@ -1,5 +1,7 @@
 # ROBOTEST
 
+**PROJECT UNDER CONSTRUCTION, NOT PRODUCTION READY**
+
 ROBOTEST is a **OpenSource Automation End2End and REST API Test Engine**.
 
 It's based on **Java**, **Selenium** and **RestAssured** projects.
@@ -31,10 +33,7 @@ We keep a version of ROBOTEST 1.0 for years, but in recent years we have had to 
 The new project was developed by the CAST-INFO team:
 
 - Jorge Muñoz
-- Daniel Llamazares
-- Laura Rios
 - Jordi Artal
-- Eduard Homedes
 - [Miguel Ruiz](https://github.com/ruicapmi)
 
 And the support of the CAST-INFO leaders and their clients. 
@@ -138,32 +137,32 @@ To **build** ROBOTEST you need too:
 
 ## Download and build ROBOTEST
 
-We are working to distribute the project in the Sonatype OSS repository, but now you need to download it and install it in your local .m2 repository or deploy it in your own proxy repository.
+**We are working to distribute the project in the Sonatype OSS repository, but now you need to download it and install it in your local .m2 repository or deploy it in your own proxy repository**
 
 After download master branch of project, execute *mvn install* in this modules in this order:
 
 bom
 core
 suite-cases-json-generator
-standalone-suite-report-ui (first time, execute with *-PinstallTooling* profile to install needed npm global libs, and remember that node and npm must be in PATH)
+standalone-suite-report-ui (first time, execute with `-PinstallTooling` profile to install needed npm global libs, and remember that node and npm must be in PATH)
 examples-basic (If you need to play with the examples).
 
 ## Under existing project
 
 ### With B.O.M. 
 
-Bill of Materials MAVEN parent POM is the simplest way to start ROBOTEST integration
+MAVEN **Bill of Materials** parent POM is the simplest way to start ROBOTEST integration
 
 1) put this parent in your pom.xml:
     
 ```xml
     <parent>
         <groupId>com.castinfo.devops.robotest</groupId>
-        <artifactId>bom</artifactId>
+        <artifactId>robotest-bom</artifactId>
         <version>${robotest.version}</version>
     </parent>
 ```
-2) Overwrite some properties defined (and explained) in the B.O.M. REBOTEST default values uses local CHROME browser without Docker, with 3 parallel method cases with his own isolated browser.
+2) Overwrite some properties defined (and explained) in the B.O.M. **REBOTEST default values uses local CHROME browser without Docker, with 3 parallel method cases with his own isolated browser**.
 
 ```xml
     <properties>
@@ -191,24 +190,28 @@ In this case, we recommend you use ROBOTEST B.O.M. definition in your project.
 
 ## Profile activation
 
-You can activate passing -ProbotestRun or put void file robotest.run.junit.profile.activator or robotest.run.testng.profile.activator for simplify activation
+You can activate passing mvn CLI `-ProbotestRun` parameter or put void file `robotest.run.junit.profile.activator` or `robotest.run.testng.profile.activator` for simplify activation
 
 ## Failsafe plugin
 
-E2E and API REST tests are Integration Tests. MAVEN provides an alternative to surefire plugin (with same features) to isolate this kind of tests: failsafe. ROBOTEST MAVEN profiles includes and configures defaults of this plugin:
+E2E and API REST tests are **Integration Tests**. MAVEN provides an alternative to surefire plugin (with same features) to isolate this kind of tests: [failsafe](http://maven.apache.org/surefire/maven-failsafe-plugin/). ROBOTEST MAVEN profiles includes and configures defaults of this plugin:
 
 - Creates src/integration-test/java and src/integration/resources with build-helper-maven-plugin
 - Execution of all test with the pattern IT*.java finded in src/integration-test/java
 
+The main diference beetwen failsafe and surfire is: **you don't have your project main sources in the failsafe execution classpath**. It's logic, are integration test ;)
+
 ### Debug Failsafe
 
-To debug MAVEN failsafe tests projects follow oficial instructions http://maven.apache.org/surefire/maven-failsafe-plugin/examples/debugging.html
+To debug MAVEN failsafe tests projects follow oficial instructions:
+
+http://maven.apache.org/surefire/maven-failsafe-plugin/examples/debugging.html
 
 ## Resolving MAVEN conflicts
 
-Properties, dependencies and plugins of ROBOTEST in your project will be merged by maven.
+Properties, dependencies and plugins of ROBOTEST in your project will be merged by MAVEN system.
 
-Revise with e.g. in Eclipse with "Effective POM" and "Dependency Hierachy" view, if some properties or dependency resolved is convenient for your project. 
+Revise with e.g. in Eclipse with "Effective POM" and "Dependency Hierachy" view, if some propertie or dependency resolved is convenient for your project. 
 
 ROBOTEST core will be placed under scope test, but revise if you have some conflict around transitive dependencies.
 
@@ -328,7 +331,7 @@ Through failsafe, rewrite failsafe plugin in your build plugins section:
 
 ## Suite, Case & Step annotaded extended configuration
 
-We *recomend* this another aproach because is simplest and expresive in your code and more mantenible over time. 
+We **recomend** this another aproach because is simplest and expresive in your code and more mantenible over time. 
 
 Not search a hardcoded product id, search first what product id's are availables and search them, don't touch the code, touch the config, and if your config is a REST service of your backend, you are in the heaven of testing :) 
 
@@ -384,15 +387,15 @@ The work of ROBOTEST is adapt execution of the new levels inside JUnit/TestNG fr
 
 # ROBOTEST IMPLEMENTATION ELEMENTS
 
-@RobotestSuite: JUnit/TestNG classes must be annotated with this tag and extends TestCase ROBOTEST API class to be ROBOTEST identified and managed. ROBOTEST creates isolated context associated to this annotation, to be Thread Safe and provide context execution for the other levels defined. This context is loaded with the necessary elements of ROBOTEST (Selenium WebDriver, Docker instances, Report, etc) to be accesible.
+`@RobotestSuite`: JUnit/TestNG classes must be annotated with this tag and extends TestCase ROBOTEST API class to be ROBOTEST identified and managed. ROBOTEST creates isolated context associated to this annotation, to be Thread Safe and provide context execution for the other levels defined. This context is loaded with the necessary elements of ROBOTEST (Selenium WebDriver, Docker instances, Report, etc) to be accesible.
 
-TestCase extended classes: The class to implement @Test JUnit or TestNG cases.  
+`TestCase` extended classes: The class to implement @Test JUnit or TestNG cases.  
 
-@RobotestCase: @Test JUnit/TestNG method must be annotaded with this tag to maintain ROBOTEST associated execution context. This class can load Page Objects to load this associated execution context.
+`@RobotestCase`: @Test JUnit/TestNG method must be annotaded with this tag to maintain ROBOTEST associated execution context. This class can load Page Objects to load this associated execution context.
 
-PageObject extended classes: Outside JUnit/TestNG classes, developer can develop Page Objects extending PageObject class, to implement steps in methods of this class. 
+`PageObject` extended classes: Outside JUnit/TestNG classes, developer can develop Page Objects extending PageObject class, to implement steps in methods of this class. 
 
-@RobotestStep: All steps of ROBOTEST Page Object must be created in methods of this class and annotated with this tag. ROBOTEST load the necessary elements of context to be developer accessible (WebDriver & Report), and wraps utility methods accessible by developer to do habitual e2e testing script.
+`@RobotestStep`: All steps of ROBOTEST Page Object must be created in methods of this class and annotated with this tag. ROBOTEST load the necessary elements of context to be developer accessible (WebDriver & Report), and wraps utility methods accessible by developer to do habitual e2e testing script.
 
 Validations: Validations are Assertions with the Selenium API browser information available, under step or case you can do programmatic validations with the JUnit/TestNG provided tools and report the results. ROBOTEST implements utilities like screen shoot, page source o console logs and provide report methods in your Page Object implementation to add to the report. Some of this can be do it with simple @RobotestStep annotation attributes.
 
@@ -421,7 +424,7 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'sel
 
 # ROBOTEST TESTS DEVELOPEMENT RECOMENDATIONS
 
-With ROBOTEST we try to enforce Selenium enforce Selenium Test Dessign recomendations:
+With ROBOTEST we try to **enforce Selenium Test Dessign recomendations**:
 
 http://www.seleniumhq.org/docs/06_test_design_considerations.jsp
 
@@ -431,23 +434,21 @@ https://github.com/SeleniumHQ/selenium/wiki/PageObjects
 
 In our experience this pattern provides more mantenible and reutilizable test code base.
 
-Not forget the other recommendations.
+Not forget the other recommendations:
 
 Assert vs. Verify
 Location Strategies
 Wrapping Selenium Calls 
 
-ROBOTEST try to enforce these development test design recommendations... or we try it :)
-
 # JENKINS INTEGRATION
 
 MAVEN execution make easy JENKINS integration.
 
-To execute all your project suites, simply remember to set basic parameters in your configuration.
+To execute all your project suites, simply remember to set basic parameters in your configuration and just run MAVEN integration test goal.
 
 To execute partial ROBOTEST case execution, we develop an maven plugin to "extract" list of suite and cases in JSON formats.
 
-This extractor is invoked in your project or you can execte independent goal:
+This extractor is invoked automatically in your project or you can execte independent goal:
 
 mvn clean test-compile com.castinfo.devops:suite-cases-json-generator:2.0.0:robotestsextractor -Dtest.classes.subdir=target/test-classes
 
@@ -538,8 +539,8 @@ ROBOTEST DEVELOPEMENT INVOLVING REQUIREMENTS AND CODING RULES
 =============================================================
 
 We establish some code conventions with this tools that we include in the project. 
-- Eclipse Preferences (EPF)
-- Eclipse Save Actions (EPF)
+- Eclipse Preferences (EPF, WARN! are tested in our local workstations, use in standalone workspace to avoid unexpected errors)
+- Eclipse Save Actions (EPF, WARN! are tested in our local workstations, use in standalone workspace to avoid unexpected errors)
 - Checkstyle (maven and xml to load in eclipse)
 - Findbugs (maven)
 - SonarLint using Sonar server 4.5.5 with default SonarWay and Findbugs+Findbugs Security plugins, with no blocker and critical issues and more than 65% coverage.

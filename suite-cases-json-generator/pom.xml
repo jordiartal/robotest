@@ -1,17 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>suite-cases-json-generator</artifactId>
+    <artifactId>robotest-suite-cases-json-generator</artifactId>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>ROBOTEST JSON Suite/Case generator.</description>
+    <url>https://github.com/CastInfo/robotest</url>
     <packaging>maven-plugin</packaging>
     <parent>
-        <groupId>com.castinfo.devops.robotest</groupId>
-        <artifactId>bom</artifactId>
+        <groupId>com.castinfo.devops</groupId>
+        <artifactId>robotest-bom</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
     <dependencies>
         <dependency>
-            <groupId>com.castinfo.devops.robotest</groupId>
-            <artifactId>core</artifactId>
+            <groupId>com.castinfo.devops</groupId>
+            <artifactId>robotest-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -24,9 +27,9 @@
             <artifactId>maven-plugin-annotations</artifactId>
             <version>3.4</version>
             <scope>provided</scope>
-        </dependency>        
+        </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -47,7 +50,7 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>    
+    </build>
 
 
 </project>

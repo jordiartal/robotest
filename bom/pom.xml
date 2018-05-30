@@ -1,10 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.castinfo.devops.robotest</groupId>
-    <artifactId>bom</artifactId>
+    <groupId>com.castinfo.devops</groupId>
+    <artifactId>robotest-bom</artifactId>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>ROBOTEST Bill of Materials.</description>
+    <url>https://github.com/CastInfo/robotest</url>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://github.com/CastInfo/robotest/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Jorge Muñoz</name>
+            <email>jorge.munoz@cast-info.es</email>
+            <organization>CAST-INFO</organization>
+            <organizationUrl>http://www.cast-info.es</organizationUrl>
+        </developer>
+        <developer>
+            <name>Jordi Artal</name>
+            <email>jordi.artal@cast-info.es</email>
+            <organization>CAST-INFO</organization>
+            <organizationUrl>http://www.cast-info.es</organizationUrl>
+        </developer>
+        <developer>
+            <name>Miguel Ruiz</name>
+            <email>miguel.ruiz@cast-info.es</email>
+            <organization>CAST-INFO</organization>
+            <organizationUrl>http://www.cast-info.es</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/CastInfo/robotest.git</connection>
+        <developerConnection>scm:git:https://github.com/CastInfo/robotest.git</developerConnection>
+        <url>https://github.com/CastInfo/robotest/tree/master</url>
+    </scm>
     <properties>
         <!-- ROBOTEST internal options for ROBOTEST build, you don't need same, except java.version :) -->
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -18,7 +52,7 @@
         <testng.version>6.14.3</testng.version>
         <spring-boot.version>1.5.7.RELEASE</spring-boot.version>
         <testng.version>6.14.3</testng.version>
-        <restassured.version>3.1.0</restassured.version>        
+        <restassured.version>3.1.0</restassured.version>
         <!-- ROBOTEST DEVELOPER OPTIONS -->
         <!-- BUILD phase Options -->
         <robotest.integration.test.sources>src/integration-test/java</robotest.integration.test.sources>
@@ -55,17 +89,19 @@
         <robotest.cfg.docker.conn />
         <!-- ROBOTEST_DOCKER_TLS: Use of tls to secure comunications with Docker host -->
         <robotest.cfg.docker.tls />
-        <!-- ROBOTEST_DOCKER_CERTS: Docker certs path of docker remote host, defaults to "user.dir" Java System Property
+        <!-- ROBOTEST_DOCKER_CERTS: Docker certs path of docker remote host, defaults to "user.dir" Java System Property 
             + .docker/machine/certs -->
         <robotest.cfg.docker.certs />
-        <!-- ROBOTEST_DOCKER_PUBLIC_HOST: ip or dns used to publish outside docker machine the selenium hub based in docker, by default resolved dynamically -->
+        <!-- ROBOTEST_DOCKER_PUBLIC_HOST: ip or dns used to publish outside docker machine the selenium hub based in docker, 
+            by default resolved dynamically -->
         <robotest.cfg.docker.public_host />
-        <!-- ROBOTEST_DOCKER_NETWORK: network for Docker, valid values: bridge (default), none, host, container and custom subnet id. -->
+        <!-- ROBOTEST_DOCKER_NETWORK: network for Docker, valid values: bridge (default), none, host, container and custom 
+            subnet id. -->
         <robotest.cfg.docker.network />
         <!-- ROBOTEST_DOCKER_CONTAINER_EXEC_TAG: tag appended to default "robotest_" initial name of robotest containers. -->
-        <robotest.cfg.docker.container.exec.tag/>
-        <!--  ROBOTEST_DOCKER_LABELS: coma separated list key:value labels -->
-        <robotest.cfg.docker.labels/>
+        <robotest.cfg.docker.container.exec.tag />
+        <!-- ROBOTEST_DOCKER_LABELS: coma separated list key:value labels -->
+        <robotest.cfg.docker.labels />
         <!-- ROBOTEST_DOCKER_DEBUG_PORT: true to activate Docker port for remote debug purposes. -->
         <robotest.cfg.docker.debug.port />
         <!-- ROBOTEST_CHROME_DOCKER_IMG_TAG: This is managed by default by robotest, but you can forze especific tag. -->
@@ -80,16 +116,16 @@
         <robotest.cfg.browserstack.user.name />
         <!-- ROBOTEST_BROWSERSTACK_ACCESS_KEY: Browser Stack accessKey -->
         <robotest.cfg.browserstack.access.key />
-        <!-- ROBOTEST_BROWSERSTACK_DEVICE: See device list https://www.browserstack.com/list-of-browsers-and-platforms?product=automate.
+        <!-- ROBOTEST_BROWSERSTACK_DEVICE: See device list https://www.browserstack.com/list-of-browsers-and-platforms?product=automate. 
             For example iPhone X -->
         <robotest.cfg.browserstack.device />
-        <!-- ROBOTEST_BROWSERSTACK_PLATFORM: See platform list https://www.browserstack.com/list-of-browsers-and-platforms?product=automate.
+        <!-- ROBOTEST_BROWSERSTACK_PLATFORM: See platform list https://www.browserstack.com/list-of-browsers-and-platforms?product=automate. 
             For example 11.0 -->
         <robotest.cfg.browserstack.platform />
-        <!-- wdm.geckoDriverVersion: Forze version of native firefox driver manager download for specific user installed
+        <!-- wdm.geckoDriverVersion: Forze version of native firefox driver manager download for specific user installed 
             firefox versions -->
         <robotest.cfg.wdm.geckoDriverVersion />
-        <!-- wdm.chromeDriverVersion: Forze version of native chrome driver manager download for specific user installed
+        <!-- wdm.chromeDriverVersion: Forze version of native chrome driver manager download for specific user installed 
             chrome versions -->
         <robotest.cfg.wdm.chromeDriverVersion />
         <!-- wdm.targetPath: Native driver manager download directory, default user.home -->
@@ -137,7 +173,7 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.2.3</version>
-            </dependency>        
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -257,7 +293,7 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Configuración por defecto del compilador java. Si se modifica java.version y project.build.sourceEncoding
+                <!-- Configuración por defecto del compilador java. Si se modifica java.version y project.build.sourceEncoding 
                     no es necesario sobreescribir este plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -270,7 +306,7 @@
                     </configuration>
                 </plugin>
                 <!-- Configura el plugin de resources con el enconding del parámetro -->
-                <!-- La versión 2.7 de este plugin da problemas con el enconding y el filtering de algunos artefactos p.ej
+                <!-- La versión 2.7 de este plugin da problemas con el enconding y el filtering de algunos artefactos p.ej 
                     gmarket y shop -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -636,7 +672,7 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-                <!-- Selenium test are integration test and must be separated from estandar directoy of unit test. Your app
+                <!-- Selenium test are integration test and must be separated from estandar directoy of unit test. Your app 
                     classpath is not visible! is the diference with unit tests! -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -663,7 +699,7 @@
                                 <goal>add-test-resource</goal>
                             </goals>
                             <configuration>
-                                <!-- Configures the resource directory of our integration tests include json anotation procesing
+                                <!-- Configures the resource directory of our integration tests include json anotation procesing 
                                     robotest extractor result -->
                                 <resources>
                                     <resource>
@@ -709,10 +745,6 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                     </plugin>
-                    <!-- <plugin> -->
-                    <!-- <groupId>org.owasp</groupId> -->
-                    <!-- <artifactId>dependency-check-maven</artifactId> -->
-                    <!-- </plugin> -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
@@ -769,8 +801,8 @@
                         <artifactId>build-helper-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>com.castinfo.devops.robotest</groupId>
-                        <artifactId>suite-cases-json-generator</artifactId>
+                        <groupId>com.castinfo.devops</groupId>
+                        <artifactId>robotest-suite-cases-json-generator</artifactId>
                         <version>${project.version}</version>
                         <!-- Add all dependencies that your test cases import -->
                         <dependencies>
@@ -817,23 +849,17 @@
                                     <perCoreThreadCount>false</perCoreThreadCount>
                                     <parallelOptimized>false</parallelOptimized>
                                     <reuseForks>true</reuseForks>
-                                    <!-- The parameter forkCount defines the maximum number of JVM processes that Surefire
-                                        will spawn concurrently to execute the tests. It supports the same syntax as -T in
-                                        maven-core: if you terminate the value
-                                        with a C, that value will be multiplied with the number of available CPU cores in
-                                        your system. For example forkCount=2.5C
-                                        on a Quad-Core system will result in forking up to ten concurrent JVM processes that
-                                        execute tests. The default setting is
-                                        forkCount=1/reuseForks=true, which means that Surefire creates one new JVM process
-                                        to execute all tests in one maven module -->
+                                    <!-- The parameter forkCount defines the maximum number of JVM processes that Surefire 
+                                        will spawn concurrently to execute the tests. It supports the same syntax as -T in maven-core: if you terminate the value 
+                                        with a C, that value will be multiplied with the number of available CPU cores in your system. For example forkCount=2.5C 
+                                        on a Quad-Core system will result in forking up to ten concurrent JVM processes that execute tests. The default setting is 
+                                        forkCount=1/reuseForks=true, which means that Surefire creates one new JVM process to execute all tests in one maven module -->
                                     <forkCount>1</forkCount>
                                     <parallel>methods</parallel>
                                     <robotest.failsafe.forkCount>${robotest.failsafe.parallelProcess}</robotest.failsafe.forkCount>
-                                    <!-- When using reuseForks=true and a forkCount value larger than one, test classes are
-                                        handed over to the forked process one-by-one. Thus, parallel=classes would not change
-                                        anything. However, you can use parallel=methods:
-                                        classes are executed in forkCount concurrent processes, each of the processes can
-                                        then use threadCount threads to execute
+                                    <!-- When using reuseForks=true and a forkCount value larger than one, test classes are 
+                                        handed over to the forked process one-by-one. Thus, parallel=classes would not change anything. However, you can use parallel=methods: 
+                                        classes are executed in forkCount concurrent processes, each of the processes can then use threadCount threads to execute 
                                         the methods of one class in parallel. -->
                                     <threadCount>${robotest.failsafe.parallelBrowsersPerOneProcess}</threadCount>
                                     <systemPropertyVariables>
@@ -883,8 +909,8 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>com.castinfo.devops.robotest</groupId>
-                                            <artifactId>standalone-suite-report-ui</artifactId>
+                                            <groupId>com.castinfo.devops</groupId>
+                                            <artifactId>robotest-standalone-suite-report-ui</artifactId>
                                             <version>${project.version}</version>
                                             <overWrite>true</overWrite>
                                             <type>jar</type>
@@ -909,8 +935,8 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.castinfo.devops.robotest</groupId>
-                    <artifactId>core</artifactId>
+                    <groupId>com.castinfo.devops</groupId>
+                    <artifactId>robotest-core</artifactId>
                     <version>${project.version}</version>
                     <scope>test</scope>
                     <exclusions>
@@ -978,8 +1004,8 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.castinfo.devops.robotest</groupId>
-                    <artifactId>core</artifactId>
+                    <groupId>com.castinfo.devops</groupId>
+                    <artifactId>robotest-core</artifactId>
                     <version>${project.version}</version>
                     <scope>test</scope>
                     <exclusions>
@@ -1037,6 +1063,56 @@
             </build>
         </profile>
 
+        <!-- profile to distribute to maven central -->
+        <profile>
+            <id>deployOpenSourceRelease</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
