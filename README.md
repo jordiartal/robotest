@@ -2,7 +2,7 @@
 
 ROBOTEST is a OpenSource Automation End2End and REST API Test Engine.
 
-It's based on Selenium and RestAssured projects.
+It's based on Java, Maven, JUnit/TestNG, Selenium, RestAssured, Docker and BrowserStack projects/services.
 
 Run browsers in your local machine or with Docker containers.
 
@@ -34,12 +34,12 @@ We keep a version of ROBOTEST 1.0 for years, but in recent years we have had to 
 
 The new project was developed by the CAST-INFO team:
 
-- Jorge Muñoz
-- Daniel Llamazares
-- Laura Rios
-- Jordi Artal
-- Eduard Homedes
-- @ruicapmi
+Jorge Muñoz
+Daniel Llamazares
+Laura Rios
+Jordi Artal
+Eduard Homedes
+@ruicapmi
 
 And the support of the CAST-INFO leaders and their clients. 
 
