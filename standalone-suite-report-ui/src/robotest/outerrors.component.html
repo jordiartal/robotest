@@ -1,0 +1,38 @@
+<mat-toolbar color="robotest">
+    <mat-toolbar-row>
+        <span>{{header}}</span>
+        <span class="toolbar-spacer"></span>
+        <button mat-mini-fab color="robotest" class="pull-right" aria-label="Close" (click)="dialogRef.close()">
+            <mat-icon color="robotest">close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<table class="table robotest3">
+    <thead>
+      <tr>
+          <th>Status</th>
+          <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of errors">
+            <td>
+                <span *ngIf="item.status=='INFO' || item.status=='DEBUG'" class="badge badge-info">
+                    {{ item.status }}
+                </span>
+                <span *ngIf="item.status=='WARNING'" class="badge badge-warning">
+                    {{ item.status }}
+                </span>                
+                <span *ngIf="item.status=='ERROR' || item.status=='DEFECT' ||  item.status=='CRITICAL'" class="badge badge-error">
+                    {{ item.status }}
+                </span>
+            </td>
+            <td>
+                <span *ngFor="let resource of item.resource">
+                    {{resource}}
+                    <hr />
+                </span>
+            </td>
+        </tr>
+    </tbody>    
+</table>

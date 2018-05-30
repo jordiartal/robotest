@@ -1,0 +1,1 @@
+cmd /c ng build --prod

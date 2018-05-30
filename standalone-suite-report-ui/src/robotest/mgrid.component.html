@@ -1,0 +1,117 @@
+<div class="robotest-grid-header">
+    <span *ngIf="gridType=='SUITE'"><b>Suite List: </b></span>
+    <span *ngIf="gridType=='CASE'"><b>Cases List: </b></span>
+    <span *ngIf="gridType=='STEP'"><b>Step List: </b></span>
+    <span *ngIf="gridType=='VALIDATION'"><b>Validation List: </b></span>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+    </mat-form-field>
+</div>
+
+<div class="robotest-grid-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="order">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Exec. Order </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.order}} </mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='SUITE'" matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Suite Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"  [innerHTML]="row.name"></mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='CASE'" matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Case Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"  [innerHTML]="row.name"></mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='STEP'" matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Step Name </mat-header-cell>
+            <mat-cell *matCellDef="let row" [innerHTML]="row.name"></mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType!='VALIDATION'" matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+            <mat-cell *matCellDef="let row" [innerHTML]="row.description"></mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='VALIDATION'" matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <mat-icon *ngIf="row.type==='CONSOLE'" title="console">call_to_action</mat-icon>
+                <mat-icon *ngIf="row.type==='TEXT'" title="text">message</mat-icon>
+                <mat-icon *ngIf="row.type==='HTML'" title="html">code</mat-icon>
+                <mat-icon *ngIf="row.type==='SCREENSHOT'" title="screenshot">linked_camera</mat-icon>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='VALIDATION'" matColumnDef="resource">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Resource </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.resource.length == 1" [innerHTML]="row.resource[0]"></span>
+                <span *ngIf="row.resource.length > 1" [innerHTML]="row.resource[0]"> <br />...<b>and {{row.resource.length-1}} more...</b></span>
+            </mat-cell>
+        </ng-container>      
+
+        <ng-container *ngIf="gridType=='CASE' || gridType=='SUITE'" matColumnDef="infos">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nº Infos </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.infos!=0" class="badge badge-success">
+                {{ row.infos }}
+                 </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='CASE' || gridType=='SUITE'" matColumnDef="warnings">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nº Warnings </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.warnings!=0" class="badge badge-warning">
+                  {{ row.warnings }}
+                 </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType=='CASE' || gridType=='SUITE'" matColumnDef="errors">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nº Errors </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.errors!=0" class="badge badge-error">
+                {{ row.errors }}
+            </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType!='CASE'" matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.status=='INFO' || row.status=='DEBUG'" class="badge badge-info">
+                   {{ row.status }}
+                </span>
+                <span *ngIf="row.status=='WARNING'" class="badge badge-warning">
+                   {{ row.status }}
+                </span>
+                <span *ngIf="row.status=='ERROR' || row.status=='DEFECT' ||  row.status=='CRITICAL'" class="badge badge-error">
+                   {{ row.status }}
+              </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container *ngIf="gridType!='VALIDATION'" matColumnDef="durationMillis">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Duration </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="isOkDuration(row.durationMillis)" class="textStatusSuccess" matTooltip="{{ row.durationMillis }} ms.">{{ row.duration }}</span>
+                <span *ngIf="isWarnDuration(row.durationMillis)" class="textStatusWarning" matTooltip="{{ row.durationMillis }} ms.">{{ row.duration }}</span>
+                <span *ngIf="isErrorDuration(row.durationMillis)" class="textStatusError" matTooltip="{{ row.durationMillis }} ms.">{{ row.duration }}</span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns" [ngClass]="{'robotest': true}"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectionChange(row)">
+        </mat-row>
+
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

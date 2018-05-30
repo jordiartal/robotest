@@ -1,0 +1,187 @@
+$col0050: #E8EAF6;
+$col0100: #C5CAE9;
+$col0200: #9FA8DA;
+$col0300: #7986CB;
+$col0400: #5C6BC0;
+$col0500: #3F51B5;
+$col0600: #3949AB;
+$col0700: #303F9F;
+$col0800: #283593;
+$col0900: #1A237E;
+$colA100: #8C9EFF;
+$colA200: #536DFE;
+$colA400: #3D5AFE;
+$colA700: #304FFE;
+$errorColor: #b94a48;
+$errorHoverColor: #953b39;
+$warningColor: #f89406;
+$warningHoverColor: #c67605;
+$successColor: #468847;
+$successHoverColor: #356635;
+$infoColor: #3a87ad;
+$infoHoverColor: #2d6987;
+$inverseColor: #eeaccb;
+$inverseHoverColor: #b31d63;
+$castcolor1: #b31d63;
+$castcolor2: #c25a8e;
+$castcolor3: #eeaccb;
+$castcolor4: #ffe1ef;
+badge {
+    padding: 1px 9px 2px;
+    font-size: 12.025px;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #ffffff;
+    background-color: #999999;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.badge:hover {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.badge-error {
+    background-color: $errorColor;
+}
+
+.badge-error:hover {
+    background-color: $errorHoverColor;
+}
+
+.badge-warning {
+    background-color: $warningColor;
+}
+
+.badge-warning:hover {
+    background-color: $warningHoverColor;
+}
+
+.badge-success {
+    background-color: $successColor;
+}
+
+.badge-success:hover {
+    background-color: $successHoverColor;
+}
+
+.badge-info {
+    background-color: $infoColor;
+}
+
+.badge-info:hover {
+    background-color: $infoHoverColor;
+}
+
+.badge-inverse {
+    background-color: $inverseColor;
+}
+
+.badge-inverse:hover {
+    background-color: $inverseHoverColor;
+}
+
+.icon-error {
+    color: $errorColor;
+}
+
+.icon-error:hover {
+    color: $errorHoverColor;
+}
+
+.icon-warning {
+    color: $warningColor;
+}
+
+.icon-warning:hover {
+    color: $warningHoverColor;
+}
+
+.icon-success {
+    color: $successColor;
+}
+
+.icon-success:hover {
+    color: $successHoverColor;
+}
+
+.icon-info {
+    color: $infoColor;
+}
+
+.icon-info:hover {
+    color: $infoHoverColor;
+}
+
+.icon-inverse {
+    color: $inverseColor;
+}
+
+.icon-inverse:hover {
+    color: $inverseHoverColor;
+}
+
+.nav-link {
+    background-color: $castcolor1;
+    color: #fff;
+}
+
+.mat-statusError {
+    color: #ffffff;
+    background-color: $errorColor;
+}
+
+.mat-statusWarning {
+    color: #ffffff;
+    background-color: $warningColor;
+}
+
+.mat-statusSuccess {
+    color: #ffffff;
+    background-color: $successColor;
+}
+
+.mat-statusInfo {
+  color: #ffffff;
+  background-color: $infoColor;
+}
+
+.statusError {
+  color: #ffffff;
+  background-color: $errorColor;
+}
+
+.statusWarning {
+  color: #ffffff;
+  background-color: $warningColor;
+}
+
+.statusSuccess {
+  color: #ffffff;
+  background-color: $successColor;
+}
+
+.statusInfo {
+color: #ffffff;
+background-color: $infoColor;
+}
+
+.textStatusInfo {
+    background-color: $infoColor;
+}
+
+.textStatusError {
+    color: $errorColor;
+}
+
+.textStatusWarning {
+    color: $warningColor;
+}
+
+.textStatusSuccess {
+    color: $successColor;
+}
+

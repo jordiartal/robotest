@@ -1,0 +1,9 @@
+@import "../_variables";
+
+.editor-highlighter {
+	font-family: Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
+	hyphens: none;
+	max-height: 30em;
+	max-width: 80em;
+	overflow-x: hidden;
+}
