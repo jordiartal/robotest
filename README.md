@@ -41,48 +41,44 @@ And the support of the CAST-INFO leaders and their clients.
 
 # SELENIUM
 
-ROBOTEST simplify the interaction with all elements of Selenium ecosystem in E2E tests.
+ROBOTEST **simplify the interaction with all elements of Selenium ecosystem** in E2E tests.
 
 - JUnit/TestNG: ROBOTEST implements the necessary listeners to do correct integration with this frameworks.
 - [Selenium API](https://github.com/SeleniumHQ/selenium): ROBOTEST provides access to the WebDriver API to develop tests and has implemented its usual uses, encapsulating them, but the use of these wrappers is not mandatory, you can develop your own utilities or contribute to this project :)
 - [Web Driver Manager](https://github.com/bonigarcia/webdrivermanager) The interaction between the Selenium API and the browser is complete with a native implementation of the driver that implements the W3C WebDriver protocol. Thanks to this integration, ROBOTEST delegates the download of the latest version of the native driver at run time. It depends on the installed browser version, you can have old versions of native drivers.
 - Browsers:
-  - Workstation: developer workstation uses is own version that must be correlated with the native driver.
-  - [Docker Selenium](https://github.com/SeleniumHQ/docker-selenium): In this types of test, ROBOTEST loads the docker image hub correlated with Selenium API version.
-  - BrowserStack: we do a correct correlation with this browser automation backend and Selenium API version.
+  - Workstation: developer uses is own version that must be correlated with the native driver to E2E with or without (headless) browser UI. 
+  - [Docker Selenium](https://github.com/SeleniumHQ/docker-selenium): In this types of test, ROBOTEST loads the docker image hub correlated with Selenium API version and execute inside container the test, with or without (headless) 
+  - https://www.browserstack.com: we do a correct correlation with this browser automation backend and Selenium API version.
 
-ROBOTEST, by default, uses lastest versions of Selenium API - Native Driver - Browser if not selected. With chorme this strategy works fine but firefox is doing a great transformation and native Gecko driver isn't completed. In the future we will work to do a compatibility matrix of this correlation and make posible automatization of this issues to maximize and simplify compatibilities.
+**ROBOTEST, by default, uses lastest versions of Selenium API - Native Driver - Browser** if not selected. With chorme this strategy works fine but firefox is doing a great transformation and native Gecko driver isn't completed. In the future we will work to do a compatibility matrix of this correlation and make posible automatization of this issues to maximize and simplify compatibilities.
 
 # DOCKER
 
-To do Browser Desktop E2E test we use official image Docker for firefox & chrome: https://github.com/SeleniumHQ/docker-selenium
+We use **[Selenium official image Docker for firefox & chrome](https://github.com/SeleniumHQ/docker-selenium)** with this important considerations:
 
-ROBOTEST don't have control of installation and startup of Docker target machine, you must provide and start this element.
+- ROBOTEST don't have control of installation and startup of Docker target machine, you must provide and start this element.
+- ROBOTEST do automatic pull of tag images configured, to be installed in docker machine.
+- ROBOTEST do automatic creation and startup, stop and remove container image
+- ROBOTEST do automatic destroy and remove of container at the tests end. In unexpected ended breaked tests you must do a manual remove of this orphan instances. We are working to automate this.
 
-ROBOTEST do automatic pull of tag images configured, to be installed in docker machine.
-
-ROBOTEST do automatic creation and startup, stop and remove container image
-
-ROBOTEST do automatic destroy and remove of container at the tests end. In unexpected ended breaked tests you must do a manual remove of this orphan instances. We are working to automate this.
-
-This type of tests are carried out with the Remote Web Selenium Driver because the Docker images load a HUB. 
+This type of tests are carried out with the **Remote Web Selenium Driver** because the Docker images load a HUB. 
 
 Debug executing Docker HUB Selenium Browser is posible. Select ROBOTEST Docker debug basic config options to do habitual IDE debuging operations. To visualize Docker browser in action connect with a remote X viewer (VNC Viewer, e.g.) to the docker machine configured IP and do "docker ps" or "docker inspect $image_id" to view real open ports (mapped with 5900 debug default configured port, but not exposed and random assigned real port).
 
 
-# API REST TESTING
+# API REST TESTING (API TESTING)
 
-ROBOTEST integrates RestAssured API Testing tool, available in your PageObjects and TestCases.  
+ROBOTEST **integrates RestAssured API Testing tool, available in your PageObjects and TestCases**.  
 
 https://github.com/rest-assured/rest-assured/wiki/GettingStarted
+
 https://github.com/rest-assured/rest-assured/wiki/Usage
 
-Request and Response have 3 common validations: Message structures, types and data values.
-
-We recommend to explode RestAssured capacities of request & response spec and validations utilities: 
+**REST Request and Response have 3 common validations: Message structures, types and data values**. We recommend to explode RestAssured capacities of request & response spec and validations utilities: 
 - Prototype and Message structure with POJO auto-mapping marshall/unmarshall JSON and XML based in Jackson and JAXB.
 - Assertions of the business logic of POJO mapped data with included RestAssured assertion API's or else JUnit, TestNG, etc.
-- XPath and JSON path validations of JSON, XML or HTML.
+- XPath and JSONPath value validations of JSON, XML or HTML.
 
 To enforce this we try to develop a wrapper (com.castinfo.devops.robotest.restassured.RestAssuredWrapper). To see examples of use we develop test examples in ROBOTEST core (com.castinfo.devops.robotest.restassured.RestTest)
 
