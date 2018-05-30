@@ -108,11 +108,16 @@ https://www.browserstack.com/list-of-browsers-and-platforms?product=automate
 
 # COMPATIBILITY MATRIX
 
-WEBDRIVER CHROMEDRIVER: https://chromedriver.storage.googleapis.com/
+WEBDRIVER CHROMEDRIVER: https://chromedriver.storage.googleapis.com
+
 WEBDRIVER GECKO FIREFOX: https://api.github.com/repos/mozilla/geckodriver/releases
-WEBDRIVER IE: https://selenium-release.storage.googleapis.com/
+
+WEBDRIVER IE: https://selenium-release.storage.googleapis.com
+
 SELENIUM DRIVER RELEASES: https://github.com/SeleniumHQ/selenium/releases
+
 DOCKER SELENIUM RELEASES: https://github.com/SeleniumHQ/docker-selenium/releases
+
 
 | BROWSER | BROWSER_VERSION | WEBDRIVER | SELENIUM_DRIVER | DOCKER_IMG                                               | HEADLESS CAPABILITY |
 |---------|-----------------|-----------|-----------------|----------------------------------------------------------|---------------------|
