@@ -1,6 +1,10 @@
 # ROBOTEST
 
-ROBOTEST is a OpenSource GNU Licensed for Automation End2End Test Engine based on Docker/Selenium and REST API Testing RestAssured based.
+ROBOTEST is a OpenSource Automation End2End and REST API Test Engine.
+
+It's based on Selenium and RestAssured projects.
+
+Run browsers in your local machine or with Docker containers.
 
 The target is develop Test with JUnit or TestNG testing frameworks under Maven Surefire launcher to provide *parametrization and parallelism* capacities. 
 
@@ -12,18 +16,20 @@ We develop three kind of browsers around the execution environment:
 - Docker: In Jenkins, to provide Continuous Integration in *NIX systems to avoid headless. Can be debug in developer workstation.
 - BrowserStack: To provide iOs, Android, or other desktop or mobile platforms that supports this great service for native or browser E2E testing.
 
-# WHY VERSION 2
+# WHY VERSION 2?
 
-ROBOTEST was a degree of final project Jorge Muñoz, and in CastInfo, the project has been managed as a service in our clients.
+ROBOTEST was a degree of final project Jorge Muñoz, team member of Cast-Info company. 
+
+The project has been managed as a service in our clients by Jorge Muñoz.
 
 We keep a version of ROBOTEST 1.0 for years, but in recent years we have had to do a great refactoring of ROBOTEST because of the new challenges:
 
 - Do end2end testing by team developers: QA as a service fails, do not scale and the programmers are the best actors to develop and maintain tests (unit testing, api testing and e2e tests).
-- Redesign ROBOTEST to simplify and reset years of technical debt caused by client adaptations and technology evolution.
+- Continuos Integration: headless execution in *NIX systems without Desktop. 
 - OpenSource project
-- Continue with parallelism ROBOTEST 1.0 capacities.
-- Born with Continuos Integration, PageObject pattern and partial suite execution concepts, in mind.
-- Provide a new reporting tool based on angular 5
+- Continue with parallelism ROBOTEST 1.0 capacities, but redesign to simplify and reset years of technical debt caused by client adaptations and technology evolution.
+- PageObject pattern and partial suite execution concepts, in mind.
+- Provide a new reporting tool based on angular 2+
 - Extra ball: API REST tests tools and configuration utilities.
 
 The new project was developed by the CAST-INFO team:
@@ -31,9 +37,9 @@ The new project was developed by the CAST-INFO team:
 - Jorge Muñoz
 - Daniel Llamazares
 - Laura Rios
-- Miguel Ruiz
 - Jordi Artal
 - Eduard Homedes
+- @ruicapmi
 
 And the support of the CAST-INFO leaders and their clients. 
 
@@ -561,23 +567,23 @@ ROADMAP
 
 In the future we try to develop this new features:
 
-* EDGE webdriver and IE webdriver Headless mode (https://github.com/sdesalas/trifleJS?)
-* Image recognition and comparison
-* Dynatrace integration
-* Network performance data
-* Zalenium integration
-* Video recording 
-* Load testing tools
-* Config server
-* Node.js fork
-* Test case management tool: 
-** Archive history results reports of suite executions.
-** Define Suite and Cases. The tags defined in your ROBOTEST Engine based test will be detected and linked automatically in the upload fase.
-** Redmine / Jira integration 
-** Configure remote execution of related Jenkins ROBOTEST Engine associated jobs. 
-** Generate archetype maven based project with the TestSuite and TestCase annotated initial classes. 
-** User can edit comments in execution test results.
-** User can link execution test results to feature and version to do defected automatic push in Project Managemenet tools (Jira / Redmine).
+- EDGE webdriver and IE webdriver Headless mode (https://github.com/sdesalas/trifleJS?)
+- Image recognition and comparison
+- Dynatrace integration
+- Network performance data
+- Zalenium integration
+- Video recording 
+- Load testing tools
+- Config server
+- Node.js fork
+- Test case management tool: 
+  - Archive history results reports of suite executions.
+  - Define Suite and Cases. The tags defined in your ROBOTEST Engine based test will be detected and linked automatically in the upload fase.
+  - Redmine / Jira integration 
+  - Configure remote execution of related Jenkins ROBOTEST Engine associated jobs. 
+  - Generate archetype maven based project with the TestSuite and TestCase annotated initial classes. 
+  - User can edit comments in execution test results.
+  - User can link execution test results to feature and version to do defected automatic push in Project Managemenet tools (Jira / Redmine).
 
 ABOUT
 =====
