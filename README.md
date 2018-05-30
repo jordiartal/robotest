@@ -39,7 +39,7 @@ The new project was developed by the CAST-INFO team:
 - Laura Rios
 - Jordi Artal
 - Eduard Homedes
-- @ruicapmi
+- [Miguel Ruiz](https://github.com/ruicapmi)
 
 And the support of the CAST-INFO leaders and their clients. 
 
