@@ -1,20 +1,16 @@
 # ROBOTEST
 
-ROBOTEST is a OpenSource Automation End2End and REST API Test Engine.
+ROBOTEST is a **OpenSource Automation End2End and REST API Test Engine**.
 
-It's based on Java, Maven, JUnit/TestNG, Selenium, RestAssured, Docker and BrowserStack projects/services.
+It's based on **Java**, **Selenium** and **RestAssured** projects.
 
-Run browsers in your local machine or with Docker containers.
+The target is simplify integration Test development with **JUnit or TestNG** frameworks under **[Maven Failsafe](http://maven.apache.org/surefire/maven-failsafe-plugin/)** launcher to provide **parametrization and parallelism** capacities. 
 
-The target is develop Test with JUnit or TestNG testing frameworks under Maven Surefire launcher to provide *parametrization and parallelism* capacities. 
+We develop **three kind of browsers** around the execution environment:
 
-Test can be compiled and executed with all IDE's that provides plugins to execute test in JUnit/TestNG and Maven frameworks.
-
-We develop three kind of browsers around the execution environment:
-
-- Developer Workstation: To develop and debug Test.
-- Docker: In Jenkins, to provide Continuous Integration in *NIX systems to avoid headless. Can be debug in developer workstation.
-- BrowserStack: To provide iOs, Android, or other desktop or mobile platforms that supports this great service for native or browser E2E testing.
+- **Workstation**: To develop and debug Test.
+- **Docker**: In Jenkins, to provide Continuous Integration in *NIX systems to avoid headless. Can be debug in developer workstation.
+- **https://www.browserstack.com**: To provide iOs, Android, or other desktop or mobile platforms that supports this great service for native or browser E2E testing.
 
 # WHY VERSION 2?
 
@@ -48,16 +44,14 @@ And the support of the CAST-INFO leaders and their clients.
 ROBOTEST simplify the interaction with all elements of Selenium ecosystem in E2E tests.
 
 - JUnit/TestNG: ROBOTEST implements the necessary listeners to do correct integration with this frameworks.
-- Selenium API: ROBOTEST provides access to the WebDriver API to develop tests and has implemented its usual uses, encapsulating them, but the use of these wrappers is not mandatory, you can develop your own utilities or contribute to this project :)
-- Web Driver Manager (https://github.com/bonigarcia/webdrivermanager) The interaction between the Selenium API and the browser is complete with a native implementation of the driver that implements the W3C WebDriver protocol. Thanks to this integration, ROBOTEST delegates the download of the latest version of the native driver at run time. It depends on the installed browser version, you can have old versions of native drivers.
+- [Selenium API](https://github.com/SeleniumHQ/selenium): ROBOTEST provides access to the WebDriver API to develop tests and has implemented its usual uses, encapsulating them, but the use of these wrappers is not mandatory, you can develop your own utilities or contribute to this project :)
+- [Web Driver Manager](https://github.com/bonigarcia/webdrivermanager) The interaction between the Selenium API and the browser is complete with a native implementation of the driver that implements the W3C WebDriver protocol. Thanks to this integration, ROBOTEST delegates the download of the latest version of the native driver at run time. It depends on the installed browser version, you can have old versions of native drivers.
 - Browsers:
-    - Docker Selenium HUB: In this types of test, ROBOTEST loads the docker image hub correlated with Selenium API version.
-    - Workstation: developer workstation uses is own version that must be correlated with the native driver.
-    - BrowserStack: we do a correct correlation with this browser automation backend and Selenium API version.
+  - Workstation: developer workstation uses is own version that must be correlated with the native driver.
+  - [Docker Selenium](https://github.com/SeleniumHQ/docker-selenium): In this types of test, ROBOTEST loads the docker image hub correlated with Selenium API version.
+  - BrowserStack: we do a correct correlation with this browser automation backend and Selenium API version.
 
-ROBOTEST, by default, uses lastest versions of Selenium API - Native Driver - Browser if not selected. 
-With chorme this strategy works fine but firefox is doing a great transformation and native Gecko driver isn't completed. 
-In the future we will work to do a compatibility matrix of this correlation and make posible automatization of this issues to maximize and simplify compatibilities.
+ROBOTEST, by default, uses lastest versions of Selenium API - Native Driver - Browser if not selected. With chorme this strategy works fine but firefox is doing a great transformation and native Gecko driver isn't completed. In the future we will work to do a compatibility matrix of this correlation and make posible automatization of this issues to maximize and simplify compatibilities.
 
 # DOCKER
 
@@ -132,13 +126,15 @@ DOCKER SELENIUM RELEASES: https://github.com/SeleniumHQ/docker-selenium/releases
 
 ROBOTEST was developed in Eclipse Mars, Neon and Oxigen Releases in a Windows 7 and 10 i5 and i7 laptops with at least 8gb of RAM. 
 
-To run ROBOTEST you need at least:
+To **run** ROBOTEST you need at least:
 
 * Java 1.8.+
 * Maven 3+  
 * Docker 17.07.0-ce (Only if you need run browser in Docker. We use https://github.com/docker-java/docker-java/ that suports Docker Remote API v1.23, Docker Server version 1.11.x)
+* A https://www.browserstack.com/ account if you try it.
 
-To build the project you need too:
+To **build** ROBOTEST you need too:
+
 * binaries of Graphviz 2.27 in PATH to generate UML with JavaDoc in MAVEN if you wan't to build ROBOTEST core
 * node.js and npm installed and in PATH to build ROBOTEST suite reporting tool 
 
