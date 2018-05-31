@@ -34,8 +34,8 @@
   * [Debug Failsafe](#debug-failsafe)
 - [EXTENDED REPORT](#extended-report)
 - [E2E TESTS DEVELOPEMENT RECOMENDATIONS](#e2e-tests-developement-recomendations)
-- [JENKINS INTEGRATION](#jenkins-integration)
-- [GET INVOLVED](#get_involved)
+- [JENKINS INTEGRATION](#jenkins-integration-and-devops)
+- [GET INVOLVED](#get-involved)
 - [ROADMAP](#roadmap)
 - [ABOUT](#about)
 
@@ -612,7 +612,7 @@ In the future we try to develop this new features:
   
 # GET INVOLVED
 
-See our [code of conduct](CODE_OF_CONDUCT.md) and [contributing guidlines](CONTRIBUTING.md)  
+See our [code of conduct](CODE_OF_CONDUCT.md) and [contributing guidelines](CONTRIBUTING.md)  
 
 # ABOUT
 
