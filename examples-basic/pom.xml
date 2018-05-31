@@ -16,10 +16,10 @@
             values at your convenience -->
         <robotest.cfg.headless>false</robotest.cfg.headless>
         <robotest.cfg.browser.name>CHROME</robotest.cfg.browser.name>
-        <robotest.cfg.docker.conn>tcp://192.168.99.100:2376</robotest.cfg.docker.conn>
-        <robotest.cfg.docker.tls>true</robotest.cfg.docker.tls>
-<!--         <robotest.cfg.docker.network>devopsnet</robotest.cfg.docker.network> -->
-        <robotest.cfg.docker.public_host>192.168.99.100</robotest.cfg.docker.public_host>
+        <!-- uncomment to user your local docker toolkit -->
+<!--         <robotest.cfg.docker.conn>tcp://192.168.99.100:2376</robotest.cfg.docker.conn> -->
+<!--         <robotest.cfg.docker.tls>true</robotest.cfg.docker.tls> -->
+<!--         <robotest.cfg.docker.public_host>192.168.99.100</robotest.cfg.docker.public_host> -->
         <robotest.failsafe.include.cases>com.castinfo.devops.robotest.examples.ITHelloWorld.*,</robotest.failsafe.include.cases>        
     </properties>
     <!-- If you need to rewrite properties use combine.children="merge" not use combine.children="append" or combine.self="override" 
