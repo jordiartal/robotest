@@ -1,4 +1,6 @@
-# HOW TO CONTRIBUTE
+# CONTRIBUTING TO ROBOTEST
+
+:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
 ## CODE CONVENTIONS AND QUALITY RULES
 
