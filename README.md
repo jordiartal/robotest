@@ -5,7 +5,7 @@
 ![Image of rebotest](robotest-logo.png)
 
 - [INTRODUCTION](#introduction)
-- [WHY VERSION 2?](#why-version-2-)
+- [VERSION 2 MOTIVATION](#version-2-motivation)
 - [SELENIUM](#selenium)
 - [DOCKER](#docker)
 - [API REST TESTING (API TESTING)](#api-rest-testing--api-testing-)
@@ -53,7 +53,7 @@ We develop **three kind of browsers** around the execution environment:
 - **Docker**: In Jenkins, to provide Continuous Integration in *NIX systems to avoid headless. Can be debug in developer workstation.
 - **https://www.browserstack.com**: To provide iOs, Android, or other desktop or mobile platforms that supports this great service for native or browser E2E testing.
 
-# WHY VERSION 2?
+# VERSION 2 MOTIVATION
 
 ROBOTEST was a degree of final project Jorge Muñoz, team member of Cast-Info company. 
 
