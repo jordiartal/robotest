@@ -34,7 +34,7 @@
   * [Debug Failsafe](#debug-failsafe)
 - [EXTENDED REPORT](#extended-report)
 - [E2E TESTS DEVELOPEMENT RECOMENDATIONS](#e2e-tests-developement-recomendations)
-- [JENKINS INTEGRATION](#jenkins-integration-and-devops)
+- [JENKINS INTEGRATION](#jenkins-integration)
 - [GET INVOLVED](#get-involved)
 - [ROADMAP](#roadmap)
 - [ABOUT](#about)
@@ -490,7 +490,7 @@ Assert vs. Verify
 Location Strategies
 Wrapping Selenium Calls 
 
-# JENKINS INTEGRATION AND DEVOPS
+# JENKINS INTEGRATION
 
 This graph is a propossal of a posible ROBOTEST integration in a CI/CD enviroment to promote releases:
 
