@@ -2,6 +2,43 @@
 
 **PROJECT UNDER CONSTRUCTION, NOT PRODUCTION READY**
 
+- [INTRODUCTION](#introduction)
+- [WHY VERSION 2?](#why-version-2-)
+- [SELENIUM](#selenium)
+- [DOCKER](#docker)
+- [API REST TESTING (API TESTING)](#api-rest-testing--api-testing-)
+- [BROWSERSTACK](#browserstack)
+- [COMPATIBILITY MATRIX](#compatibility-matrix)
+- [REQUIREMENTS](#requirements)
+- [HELLO WORLD MAVEN PROJECT](#hello-world-maven-project)
+  * [Download and build ROBOTEST](#download-and-build-robotest)
+  * [Integrate ROBOTEST under existing project](#integrate-robotest-under-existing-project)
+    + [With B.O.M.](#with-bom)
+    + [Without B.O.M.](#without-bom)
+  * [Creating an isolated project](#creating-an-isolated-project)
+  * [Profile activation](#profile-activation)
+  * [Failsafe plugin](#failsafe-plugin)
+  * [Resolving MAVEN conflicts](#resolving-maven-conflicts)
+- [HELLO WORLD JAVA CODE](#hello-world-java-code)
+  * [Previous consideration: ROBOTEST organization levels](#previous-consideration--robotest-organization-levels)
+  * [Suite Object with implemented Cases](#suite-object-with-implemented-cases)
+    + [Suite/Case Implementation elements](#suite-case-implementation-elements)
+  * [The PageObject with steps and validations.](#the-pageobject-with-steps-and-validations)
+    + [Suite/Case Implementation elements](#suite-case-implementation-elements-1)
+- [HELLO WORLD CONFIGURATION](#hello-world-configuration)
+  * [Basic configuration defined in Java System Properties](#basic-configuration-defined-in-java-system-properties)
+  * [Suite, Case & Step annotaded extended configuration](#suite--case---step-annotaded-extended-configuration)
+- [RUN THE HELLO WORLD EXAMPLE](#run-the-hello-world-example)
+  * [Debug Failsafe](#debug-failsafe)
+- [EXTENDED REPORT](#extended-report)
+- [E2E TESTS DEVELOPEMENT RECOMENDATIONS](#e2e-tests-developement-recomendations)
+- [JENKINS INTEGRATION](#jenkins-integration)
+- [ROBOTEST DEVELOPEMENT INVOLVING REQUIREMENTS AND CODING RULES](#robotest-developement-involving-requirements-and-coding-rules)
+- [ROADMAP](#roadmap)
+- [ABOUT](#about)
+
+# INTRODUCTION
+
 ROBOTEST is a **OpenSource Automation End2End and REST API Test Engine**.
 
 It's based on **Java**, **Selenium** and **RestAssured** projects.
@@ -213,7 +250,7 @@ Remember that this dependencies and plugins can be adjusted for your own project
 
 # HELLO WORLD JAVA CODE
 
-## Previous consideration: ROBOTEST organization levels
+## Previous consideration: ROBOTEST organization levels and components
 
 Unit testing frameworks defines 3 organization levels: Suites, Cases of a suite, and Validations of case.
 
@@ -221,11 +258,15 @@ In our experience in browser automation E2E testing, we take dessign decision to
 
 The work of ROBOTEST is adapt execution of the new levels inside JUnit/TestNG frameworks, and generate and alternative report to reflect this **4 levels to improve review**.
 
+You can see component vs level organization in this simple graph:
+
+![Image of rebotest](robotest-components.png)
+
 ## Suite Object with implemented Cases
 
 Firts step after maven project configuration is create Suite Object with cases: 
 
-```java
+```Java
 package com.castinfo.devops.robotest.examples;
 
 import java.util.Properties;
@@ -270,7 +311,7 @@ public class ITHelloWorld extends TestCase {
 
 ## The PageObject with steps and validations. 
 
-```java
+```Java
 package com.castinfo.devops.robotest.examples;
 
 import com.castinfo.devops.robotest.PageObject;
@@ -355,7 +396,7 @@ ROBOTEST load resources, do the marshall in the selected map classes and put in 
 
 See example:
 
-```java
+```Java
 @RobotestSuite(tag = "MY_SMOKE_TEST",
                description = "Example to introduce ROBOTEST config utilities",
                configElements = { @RobotestConfig(key = ReusableTestCases.MY_TEST_BASIC_PARAMS,
@@ -374,7 +415,7 @@ As you see we use token replacement in resource definition that uses any System 
 
 To retrieve values you can:
 
-```java
+```Java
 
     @RobotestCase(tag = "EXAMPLE_TEST", description = "Some case example")
     public void exampleTest() throws RobotestException {
@@ -414,14 +455,20 @@ Acording to https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security
 
 You must set this property in Jenkins SCRIPT console in order to execute inline javascript and load styles, images and JSON sources.
 
-```java
+```Java
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'")
 ```
 
 2) In local workstation under root maven project directory you can do (with node.js/npm previous installation):
  
+```Shell 
     npm install http-server -g
     http-server ./target/failsafe-reports/robotest-suite-reports -p 4200
+```
+
+Open http://localhost:4200 in your browser and revise de report results:
+
+![Image of extended report](robotest-suite-report.png)
 
 # E2E TESTS DEVELOPEMENT RECOMENDATIONS
 
@@ -441,7 +488,11 @@ Assert vs. Verify
 Location Strategies
 Wrapping Selenium Calls 
 
-# JENKINS INTEGRATION
+# JENKINS INTEGRATION AND DEVOPS
+
+This graph is a propossal of a posible ROBOTEST integration in a CI/CD enviroment to promote releases:
+
+![Image of rebotest](robotest-cicd.png)
 
 MAVEN execution make easy JENKINS integration.
 
@@ -566,8 +617,8 @@ We try to implement the project we some Clean Code principles and practices:
 - GRASP (General Responsibility Assignment Software Principles https://en.wikipedia.org/wiki/GRASP_(object-oriented_design))
 
 
-ROADMAP
-=======
+# ROADMAP
+
 
 In the future we try to develop this new features:
 
@@ -589,7 +640,6 @@ In the future we try to develop this new features:
   - User can edit comments in execution test results.
   - User can link execution test results to feature and version to do defected automatic push in Project Managemenet tools (Jira / Redmine).
 
-ABOUT
-=====
+# ABOUT
 
 ROBOTEST (Copyright © 2017-2018) is a project created by Cast-Info S.A. www.cast-info.es and licensed under the terms of the GNU GENERAL PUBLIC LICENSE. Comments, questions and suggestions are always very welcome.
