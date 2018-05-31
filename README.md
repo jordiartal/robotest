@@ -2,6 +2,8 @@
 
 **PROJECT UNDER CONSTRUCTION, NOT PRODUCTION READY**
 
+![Image of rebotest](robotest-logo.png)
+
 - [INTRODUCTION](#introduction)
 - [WHY VERSION 2?](#why-version-2-)
 - [SELENIUM](#selenium)
