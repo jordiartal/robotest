@@ -71,7 +71,7 @@ We keep a version of ROBOTEST 1.0 for years, but in recent years we have had to 
 
 The new project was developed by the CAST-INFO team:
 
-- Jorge Muñoz
+- [Jorge Muñoz](https://github.com/Jorge2M)
 - [Jordi Artal](https://github.com/jordiartal)
 - [Miguel Ruiz](https://github.com/ruicapmi)
 
