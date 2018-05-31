@@ -117,7 +117,7 @@ DOCKER SELENIUM RELEASES: https://github.com/SeleniumHQ/docker-selenium/releases
 | CHROME  | 66.0.+          | 2.38      | 3.11.0          | `selenium/standalone-chrome:3.11.0-dysprosium`             | yes                 |
 | CHROME  | 65.0.+          | 2.37      | 3.11.0          | `selenium/standalone-chrome:3.11.0-(bismuth/californium)`  | yes                 |
 
-# ROBOTEST REQUIREMENTS
+# REQUIREMENTS
 
 ROBOTEST was developed in Eclipse Mars, Neon and Oxigen Releases in a Windows 7 and 10 i5 and i7 laptops with at least 8gb of RAM. 
 
@@ -133,7 +133,7 @@ To **build** ROBOTEST you need too:
 * binaries of Graphviz 2.27 in PATH to generate UML with JavaDoc in MAVEN if you wan't to build ROBOTEST core
 * node.js and npm installed and in PATH to build ROBOTEST suite reporting tool 
 
-# INTEGRATE ROBOTEST IN YOUR MAVEN PROJECT
+# HELLO WORLD MAVEN PROJECT
 
 ## Download and build ROBOTEST
 
@@ -147,7 +147,7 @@ suite-cases-json-generator
 standalone-suite-report-ui (first time, execute with `-PinstallTooling` profile to install needed npm global libs, and remember that node and npm must be in PATH)
 examples-basic (If you need to play with the examples).
 
-## Under existing project
+## Integrate ROBOTEST under existing project
 
 ### With B.O.M. 
 
@@ -201,12 +201,6 @@ E2E and API REST tests are **Integration Tests**. MAVEN provides an alternative 
 
 The main diference beetwen failsafe and surfire is: **you don't have your project main sources in the failsafe execution classpath**. It's logic, are integration test ;)
 
-### Debug Failsafe
-
-To debug MAVEN failsafe tests projects follow oficial instructions:
-
-http://maven.apache.org/surefire/maven-failsafe-plugin/examples/debugging.html
-
 ## Resolving MAVEN conflicts
 
 Properties, dependencies and plugins of ROBOTEST in your project will be merged by MAVEN system.
@@ -217,11 +211,19 @@ ROBOTEST core will be placed under scope test, but revise if you have some confl
 
 Remember that this dependencies and plugins can be adjusted for your own project target configuration compatibility but may be cause some issues to ROBOTEST.    
 
-# HELLO WORLD EXAMPLE
+# HELLO WORLD JAVA CODE
 
-In a ROBOTEST created/adapted MAVEN integrated project create this two classes:
+## Previous consideration: ROBOTEST organization levels
 
-1) The Suite Cases object:
+Unit testing frameworks defines 3 organization levels: Suites, Cases of a suite, and Validations of case.
+
+In our experience in browser automation E2E testing, we take dessign decision to organize ROBOTEST in 4 levels: Suites, Cases of suite, Steps of case and Validations of step.
+
+The work of ROBOTEST is adapt execution of the new levels inside JUnit/TestNG frameworks, and generate and alternative report to reflect this **4 levels to improve review**.
+
+## Suite Object with implemented Cases
+
+Firts step after maven project configuration is create Suite Object with cases: 
 
 ```java
 package com.castinfo.devops.robotest.examples;
@@ -250,7 +252,7 @@ public class ITHelloWorld extends TestCase {
     @RobotestCase(tag = "HELLO_WORLD_ROBOTEST_CASE_001", description = "The ROBOTEST HelloWorld example")
     public void helloWorld() throws RobotestException {
         HelloWorldPageObject helloWorldPO = this.buildPageObject(HelloWorldPageObject.class);
-        String urlToTest = this.getSuiteTestPropertyCfg("WEB_TO_TEST", "CAST-INFO-WEB");
+        String urlToTest = this.getSuiteTestPropertyCfg("WEB_TO_TEST", "CAST-INFO-WEB"); //Or System.getProperty("CAST-INFO-WEB"); 
         helloWorldPO.openURL(urlToTest);
         helloWorldPO.checkTitle();
     }
@@ -258,7 +260,15 @@ public class ITHelloWorld extends TestCase {
 }
 ```
 
-2) The PageObject with steps and validations. 
+### Suite/Case Implementation elements
+
+`@RobotestSuite`: JUnit/TestNG classes must be annotated with this tag and extends TestCase ROBOTEST API class to be ROBOTEST identified and managed. ROBOTEST creates isolated context associated to this annotation, to be Thread Safe and provide context execution for the other levels defined. This context is loaded with the necessary elements of ROBOTEST (Selenium WebDriver, Docker instances, Report, etc) to be accesible.
+
+`TestCase` extended classes: The class to implement @Test JUnit or TestNG cases.  
+
+`@RobotestCase`: @Test JUnit/TestNG method must be annotaded with this tag to maintain ROBOTEST associated execution context. This class can load Page Objects to load this associated execution context.
+
+## The PageObject with steps and validations. 
 
 ```java
 package com.castinfo.devops.robotest.examples;
@@ -282,19 +292,19 @@ public class HelloWorldPageObject extends PageObject {
 
 ```
 
-You can run this test this Suite with mvn integation-test goal or runnig in your IDE JUnit plugin adding System.property -DCAST-INFO-WEB="https://www.cast-info.es".
+### Suite/Case Implementation elements
 
-Remember that Sure-Fire executions can be debugged http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html
+`PageObject` extended classes: Outside JUnit/TestNG classes, developer can develop Page Objects extending PageObject class, to implement steps in methods of this class. 
 
-Your prefered IDE can execute JUnit & TestNG ROBOTEST project without parallelization and MAVEN, you only need to pass ROBOTEST basic parameters with "-D" Java System Properties (or using defaults, CHROME without Docker)
+`@RobotestStep`: All steps of ROBOTEST Page Object must be created in methods of this class and annotated with this tag. ROBOTEST load the necessary elements of context to be developer accessible (WebDriver & Report), and wraps utility methods accessible by developer to do habitual e2e testing script.
 
-You will see the results in your editor JUnit report view or inspecting estandar maven report: target/failsafe-report/TEST-com.castinfo.devops.robotest.examples.ITHelloWorld.xml
+Validations: Validations are Assertions with the Selenium API browser information available, under step or case you can do programmatic validations with the JUnit/TestNG provided tools and report the results. ROBOTEST implements utilities like screen shoot, page source o console logs and provide report methods in your Page Object implementation to add to the report. Some of this can be do it with simple @RobotestStep annotation attributes.
 
-# ROBOTEST CONFIGURATION
+# HELLO WORLD CONFIGURATION
 
 ROBOTEST do a great job to enforzes parametrization, with Continuous Integration in mind, and in our testing developer experience.
 
-ROBOTEST has 2 different kinds of configuration:
+ROBOTEST has **2 different kinds of configuration**:
 
 ## Basic configuration defined in Java System Properties
 
@@ -376,30 +386,21 @@ To retrieve values you can:
 
 This config retrieve methods are available in TestCases and PageObject ROBOTEST implementing classes.
 
+# RUN THE HELLO WORLD EXAMPLE
 
-# ROBOTEST ORGANIZATION LEVELS
+You can run this test this Suite with `mvn integation-test` goal or runnig in your IDE JUnit plugin adding System.property -DCAST-INFO-WEB="https://www.cast-info.es".
 
-Unit testing frameworks defines 3 organization levels: Suites, Cases of a suite, and Validations of case.
+Your prefered IDE can execute JUnit & TestNG ROBOTEST project without parallelization and MAVEN, you only need to pass ROBOTEST basic parameters with "-D" Java System Properties (or using defaults, CHROME without Docker)
 
-In our experience in browser automation E2E testing, we take dessign decision to organize ROBOTEST in 4 levels: Suites, Cases of suite, Steps of case and Validations of step.
+You will see the results in your editor JUnit report view or inspecting estandar maven report: `target/failsafe-report/TEST-com.castinfo.devops.robotest.examples.ITHelloWorld.xml`
 
-The work of ROBOTEST is adapt execution of the new levels inside JUnit/TestNG frameworks, and generate and alternative report to reflect this 4 levels to improve review.
+## Debug Failsafe
 
-# ROBOTEST IMPLEMENTATION ELEMENTS
+To debug MAVEN failsafe tests projects follow oficial instructions:
 
-`@RobotestSuite`: JUnit/TestNG classes must be annotated with this tag and extends TestCase ROBOTEST API class to be ROBOTEST identified and managed. ROBOTEST creates isolated context associated to this annotation, to be Thread Safe and provide context execution for the other levels defined. This context is loaded with the necessary elements of ROBOTEST (Selenium WebDriver, Docker instances, Report, etc) to be accesible.
+http://maven.apache.org/surefire/maven-failsafe-plugin/examples/debugging.html
 
-`TestCase` extended classes: The class to implement @Test JUnit or TestNG cases.  
-
-`@RobotestCase`: @Test JUnit/TestNG method must be annotaded with this tag to maintain ROBOTEST associated execution context. This class can load Page Objects to load this associated execution context.
-
-`PageObject` extended classes: Outside JUnit/TestNG classes, developer can develop Page Objects extending PageObject class, to implement steps in methods of this class. 
-
-`@RobotestStep`: All steps of ROBOTEST Page Object must be created in methods of this class and annotated with this tag. ROBOTEST load the necessary elements of context to be developer accessible (WebDriver & Report), and wraps utility methods accessible by developer to do habitual e2e testing script.
-
-Validations: Validations are Assertions with the Selenium API browser information available, under step or case you can do programmatic validations with the JUnit/TestNG provided tools and report the results. ROBOTEST implements utilities like screen shoot, page source o console logs and provide report methods in your Page Object implementation to add to the report. Some of this can be do it with simple @RobotestStep annotation attributes.
-
-# ROBOTEST REPORT
+# EXTENDED REPORT
 
 JUnit & TestNG generates is own report, in general well organized testing code is suficient. But if base code and complexity growns, test reporting reading is hard. 
 
@@ -407,7 +408,7 @@ ROBOTEST creates if own JSON report and includes a Angular 5 web application to 
 
 The target report directory is configurable in basic configuration parameters, by default ROBOTEST generates in ./target/failsafe-reports/robotest-suite-reports
 
-1) In Jenkins you use publishHTML plugin to archive ./target/failsafe-reports/robotest-suite-reports/index.html.
+1) In Jenkins you use `publishHTML` plugin to archive ./target/failsafe-reports/robotest-suite-reports/index.html.
 
 Acording to https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy#ConfiguringContentSecurityPolicy-RelaxingTheRules
 
@@ -422,7 +423,7 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'sel
     npm install http-server -g
     http-server ./target/failsafe-reports/robotest-suite-reports -p 4200
 
-# ROBOTEST TESTS DEVELOPEMENT RECOMENDATIONS
+# E2E TESTS DEVELOPEMENT RECOMENDATIONS
 
 With ROBOTEST we try to **enforce Selenium Test Dessign recomendations**:
 
