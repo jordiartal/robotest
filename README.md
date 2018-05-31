@@ -539,11 +539,16 @@ ROBOTEST DEVELOPEMENT INVOLVING REQUIREMENTS AND CODING RULES
 =============================================================
 
 We establish some code conventions with this tools that we include in the project. 
-- Eclipse Preferences (EPF, WARN! are tested in our local workstations, use in standalone workspace to avoid unexpected errors)
-- Eclipse Save Actions (EPF, WARN! are tested in our local workstations, use in standalone workspace to avoid unexpected errors)
-- Checkstyle (maven and xml to load in eclipse)
-- Findbugs (maven)
-- SonarLint using Sonar server 4.5.5 with default SonarWay and Findbugs+Findbugs Security plugins, with no blocker and critical issues and more than 65% coverage.
+
+| TOOL                | VERSION | CONFIG                                                    | COMMENTS                                                                                     | GOALS AND TARGET THRESHOLDS                                                                                                                        |
+|---------------------|---------|-----------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Eclipse Preferences | Oxigen+ | `devopsstack-castinfo-eclipse-workspace-preferences.epf`  | Tested in local workstations, try to isolate in a diferent eclipse workspace to avoid errors | Save Actions to format and adapt code and eclipse compiler alert thresholds. Mandatory to be applied and no errors in Eclipse build are acceptable |
+| Eclipse Clean Up    | Oxigen+ | `devopsstack-castinfo-eclipse-java-cleanup.xml`           | Tested in local workstations, try to isolate a diferent eclipse workspace to avoid errors    | Clean up options for eclipse. Mandatory to be applied                                                                                              |
+| Eclipse Formatter   | Oxigen+ | `devopsstack-castinfo-eclipse-java-formatter.xml`         | Tested in local workstations, try to isolate a diferent eclipse workspace to avoid errors    | Code formatter for eclipse. Mandatory to be applied                                                                                                |
+| Checkstyle          | 3.0.0   | robotest BOM                                              |                                                                                              | Mandatory to be applied and no issues                                                                                                              |
+| FindBugs            | 3.0.5   | robotest BOM                                              |                                                                                              | Mandatory to be applied and no issues                                                                                                              |
+| Sonar               | 4.5.5   | Sonar Way and Findbugs Security plugins                   | Aligned config with other tools                                                              | Mandatory: no bloquer or critical issues and more than 65% test coverage                                                                           |
+
 
 We try to implement the project we some Clean Code principles and practices:
 - KISS (Keep it simple, stupid https://en.wikipedia.org/wiki/KISS_principle)
