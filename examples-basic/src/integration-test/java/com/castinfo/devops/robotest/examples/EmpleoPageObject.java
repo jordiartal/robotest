@@ -1,5 +1,7 @@
 package com.castinfo.devops.robotest.examples;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.junit.Assert;
@@ -19,7 +21,7 @@ public class EmpleoPageObject extends PageObject {
      * Check Links on Empleo Sections
      */
     @RobotestStep(tag = "EMPLEO_STEP_001", description = "Check Empleo Delegacion", captureScreenShootAtEndStep = true)
-    public void checkEmpleoDelegacion() throws RobotestException {
+    public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException {
         String handler = this.getDriver().getWindowHandle();
         JavascriptExecutor js = (JavascriptExecutor) this.getDriver();
         List<WebElement> listElem = this.findElementsBy(By.xpath("//*[@id=\"post-1512\"]/div/div[5]/div"));
@@ -34,8 +36,10 @@ public class EmpleoPageObject extends PageObject {
                 }
                 js.executeScript("window.open('" + link + "','_blank');");
                 this.switchToAnotherWindow();
-                Boolean okPage = this.getCurrentUrl().equals(link);
-                Assert.assertTrue("destination page [" + href + "] is not the same as [" + this.getCurrentUrl() + "]",
+                URI linkDomain = new URI(link);
+                URI actualDomain = new URI(this.getCurrentUrl());
+                Boolean okPage = actualDomain.getHost().contains(linkDomain.getHost());
+                Assert.assertTrue("destination page [" + actualDomain.getHost() + "] is not the same as [" + linkDomain.getHost() + "]",
                                   okPage);
                 this.getDriver().close();
                 this.getDriver().switchTo().window(handler);
@@ -47,7 +51,7 @@ public class EmpleoPageObject extends PageObject {
      * Check email on empleo Sections
      */
     @RobotestStep(tag = "EMPLEO_STEP_002", description = "Check Empleo Mail", captureScreenShootAtEndStep = true)
-    public void checkEmpleoEmail(final HomePageObject home) throws RobotestException {
+    public void checkEmpleoEmail(final HomePageObject home) throws RobotestException, InterruptedException {
         home.checkCastCookies();
         List<WebElement> listElems = this.findElementsBy(By.tagName("a"));
         Assert.assertNotNull("there is no links in the current page", listElems);

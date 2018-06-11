@@ -1,5 +1,7 @@
 package com.castinfo.devops.robotest.examples;
 
+import java.net.URISyntaxException;
+
 import javax.xml.xpath.XPathExpressionException;
 
 import org.junit.Test;
@@ -39,20 +41,18 @@ public class ITCastExamples extends TestCase {
      * Checks Home page's access to Contacto form ant fills its content
      *
      * @throws RobotestException
+     * @throws InterruptedException 
      * @throws XPathExpressionException
      * @throws RobotestApiTestingException
      * @throws XPathExpressionException
      */
     @Test
     @RobotestCase(tag = "HOME_CASE_002", description = "Home Case Check Form Contacto")
-    public void checkHomeContacto() throws RobotestException {
+    public void checkHomeContacto() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preHome.openURL("http://www.cast-info.es");
         preHome.waitForPageLoaded(1L);
-        preHome.checkSearchContacto();
-        preHome.checkGoContacto();
-        preHome.waitForPageLoaded(1L);
-        preHome.checkFormExists();
+        preHome.checkGotoContacto();
         preHome.checkUseForm();
     }
 
@@ -89,10 +89,11 @@ public class ITCastExamples extends TestCase {
      * Checks Home page Slider buttons
      *
      * @throws RobotestException
+     * @throws InterruptedException 
      */
     @Test
     @RobotestCase(tag = "HOME_CASE_005", description = "Home Case Slider Controls")
-    public void checkHomeSliderControls() throws RobotestException {
+    public void checkHomeSliderControls() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preHome.openURL("http://www.cast-info.es");
         preHome.getDriver().manage().window().maximize();
@@ -103,10 +104,11 @@ public class ITCastExamples extends TestCase {
      * Checks Home page Cookies
      *
      * @throws RobotestException
+     * @throws InterruptedException 
      */
     @Test
     @RobotestCase(tag = "HOME_CASE_006", description = "Home Case Cookies")
-    public void checkHomeCookies() throws RobotestException {
+    public void checkHomeCookies() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preHome.openURL("http://www.cast-info.es");
         preHome.waitForPageLoaded(1L);
@@ -205,10 +207,11 @@ public class ITCastExamples extends TestCase {
      * Check Clientes page access to contacto form an fill in
      *
      * @throws RobotestException
+     * @throws InterruptedException 
      */
     @Test
     @RobotestCase(tag = "CLIENTES_CASE_001", description = "Clientes Case Link List")
-    public void checkClientesContacto() throws RobotestException {
+    public void checkClientesContacto() throws RobotestException, InterruptedException {
         ClientesPageObject preCli = this.buildPageObject(ClientesPageObject.class);
         preCli.openURL("https://www.cast-info.es/clientes/");
         preCli.waitForPageLoaded(1L);
@@ -234,10 +237,11 @@ public class ITCastExamples extends TestCase {
      * Check Empleo page links related to Delegacion inner section
      *
      * @throws RobotestException
+     * @throws URISyntaxException 
      */
     @Test
     @RobotestCase(tag = "EMPLEO_CASE_001", description = "Empleo Case Delegacion")
-    public void checkEmpleoDelegacion() throws RobotestException {
+    public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException {
         EmpleoPageObject preEmp = this.buildPageObject(EmpleoPageObject.class);
         preEmp.openURL("https://www.cast-info.es/empleo/");
         preEmp.waitForPageLoaded(1L);
@@ -248,10 +252,11 @@ public class ITCastExamples extends TestCase {
      * Check Empleo page eMail buttons
      *
      * @throws RobotestException
+     * @throws InterruptedException 
      */
     @Test
     @RobotestCase(tag = "EMPLEO_CASE_002", description = "Empleo Case eMail")
-    public void checkEmpleoEmail() throws RobotestException {
+    public void checkEmpleoEmail() throws RobotestException, InterruptedException {
         EmpleoPageObject preEmp = this.buildPageObject(EmpleoPageObject.class);
         preEmp.openURL("https://www.cast-info.es/empleo/");
         preEmp.waitForPageLoaded(1L);

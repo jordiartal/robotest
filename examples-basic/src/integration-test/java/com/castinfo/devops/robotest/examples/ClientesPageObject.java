@@ -27,11 +27,11 @@ public class ClientesPageObject extends PageObject {
     @RobotestStep(tag = "CLIENTES_STEP_001",
                   description = "Check Clientes Contact form",
                   captureScreenShootAtEndStep = true)
-    public void checkContacto(final HomePageObject home) throws RobotestException {
+    public void checkContacto(final HomePageObject home) throws RobotestException, InterruptedException {
         Assert.assertNotNull("element doesn't exists",
-                             this.findElementBy(By.xpath("//*[@id=\"post-503\"]/div/div[3]/div/div/div/a")));
+                             this.findElementBy(By.xpath("//*[@id=\"post-503\"]/div/div[3]/div/div/div/div[2]/a")));
         home.checkCastCookies();
-        this.findElementBy(By.xpath("//*[@id=\"post-503\"]/div/div[3]/div/div/div/a")).click();
+        this.findElementBy(By.xpath("//*[@id=\"post-503\"]/div/div[3]/div/div/div/div[2]/a")).click();
         home.checkUseForm();
     }
 

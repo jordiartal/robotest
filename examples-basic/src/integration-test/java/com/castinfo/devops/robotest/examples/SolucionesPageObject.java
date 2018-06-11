@@ -42,7 +42,7 @@ public class SolucionesPageObject extends PageObject {
     @RobotestStep(tag = "SOLUTIONS_STEP_002",
                   description = "Check Soluciones Contacto",
                   captureScreenShootAtEndStep = true)
-    public void checkContacto(final HomePageObject home) throws RobotestException {
+    public void checkContacto(final HomePageObject home) throws RobotestException, InterruptedException {
         Assert.assertNotNull(this.findElementBy(By.xpath("//*[@id=\"post-285\"]/div/div[6]/div/div/div/a")));
         home.checkCastCookies();
         this.findElementBy(By.xpath("//*[@id=\"post-285\"]/div/div[6]/div/div/div/a")).click();

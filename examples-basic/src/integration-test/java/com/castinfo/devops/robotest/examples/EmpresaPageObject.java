@@ -118,7 +118,10 @@ public class EmpresaPageObject extends PageObject {
                   description = "Check Empresa Google Maps Popups",
                   captureScreenShootAtEndStep = true)
     public void checkMaps() throws RobotestException, InterruptedException {
-        this.findElementBy(By.xpath("//div[@id='cookie-law-info-bar']/span/a")).click();
+    	this.findElementBy(By.xpath("/html/body/div[4]/div/div[2]/div/button[2]")).click();
+        Thread.sleep(1000L);
+    	this.findElementBy(By.xpath("//*[@id=\"cookie_action_close_header\"]")).click();
+        Thread.sleep(1000L);
         this.moveToElement(this.getDriver().findElement(By.xpath("//*[@id=\"post-659\"]/div/div[7]/div")));
         List<WebElement> elems = this.getDriver()
                                      .findElements(By.xpath("//*[@id=\"post-659\"]/div/div[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[3]/div"));

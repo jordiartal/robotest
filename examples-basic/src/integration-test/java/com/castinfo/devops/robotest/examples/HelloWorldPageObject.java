@@ -6,6 +6,10 @@ import com.castinfo.devops.robotest.annot.RobotestStep;
 
 public class HelloWorldPageObject extends PageObject {
 
+    /**
+     * @throws RobotestException
+     * Check page title
+     */
     @RobotestStep(tag = "HELLO_WORLD_STEP_001", description = "Check home title")
     public void checkTitle() throws RobotestException {
         String parameter = "Cast Info | Cast Info s.a > Soluciones y Servicios tecnológicos de Vanguardia";
