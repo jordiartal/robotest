@@ -48,7 +48,7 @@ public class EmpleoPageObject extends PageObject {
     }
 
     /*
-     * Check email on empleo Sections
+     * Check email on 'empleo' Sections
      */
     @RobotestStep(tag = "EMPLEO_STEP_002", description = "Check Empleo Mail", captureScreenShootAtEndStep = true)
     public void checkEmpleoEmail(final HomePageObject home) throws RobotestException, InterruptedException {

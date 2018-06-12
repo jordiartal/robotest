@@ -44,7 +44,6 @@ public class ITCastExamples extends TestCase {
      * @throws InterruptedException 
      * @throws XPathExpressionException
      * @throws RobotestApiTestingException
-     * @throws XPathExpressionException
      */
     @Test
     @RobotestCase(tag = "HOME_CASE_002", description = "Home Case Check Form Contacto")
@@ -133,7 +132,7 @@ public class ITCastExamples extends TestCase {
     }
 
     /**
-     * Check Empresa's page inner secionts
+     * Check Empresa's page inner sections
      *
      * @throws RobotestException
      */
