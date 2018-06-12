@@ -97,6 +97,7 @@ public class ITCastExamples extends TestCase {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preHome.openURL("http://www.cast-info.es");
         preHome.getDriver().manage().window().maximize();
+        Thread.sleep(1000L);
         preHome.checkSliderButtons();
     }
 
@@ -111,7 +112,7 @@ public class ITCastExamples extends TestCase {
     public void checkHomeCookies() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preHome.openURL("http://www.cast-info.es");
-        preHome.waitForPageLoaded(1L);
+        Thread.sleep(2000L);
         preHome.checkCastCookies();
         preHome.checkCreateCookie();
         preHome.checkDeleteCastCookies();
@@ -214,7 +215,7 @@ public class ITCastExamples extends TestCase {
     public void checkClientesContacto() throws RobotestException, InterruptedException {
         ClientesPageObject preCli = this.buildPageObject(ClientesPageObject.class);
         preCli.openURL("https://www.cast-info.es/clientes/");
-        preCli.waitForPageLoaded(1L);
+        Thread.sleep(3000L);
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preCli.checkContacto(preHome);
     }
@@ -223,13 +224,15 @@ public class ITCastExamples extends TestCase {
      * Check Clientes page inner links
      *
      * @throws RobotestException
+     * @throws InterruptedException 
+     * @throws URISyntaxException 
      */
     @Test
     @RobotestCase(tag = "CLIENTES_CASE_002", description = "Clientes Case Link List")
-    public void checkClientesLinks() throws RobotestException {
+    public void checkClientesLinks() throws RobotestException, InterruptedException, URISyntaxException {
         ClientesPageObject preCli = this.buildPageObject(ClientesPageObject.class);
         preCli.openURL("https://www.cast-info.es/clientes/");
-        preCli.waitForPageLoaded(1L);
+        Thread.sleep(1000L);
         preCli.checkClientesLinks();
     }
 
@@ -238,10 +241,11 @@ public class ITCastExamples extends TestCase {
      *
      * @throws RobotestException
      * @throws URISyntaxException 
+     * @throws InterruptedException 
      */
     @Test
     @RobotestCase(tag = "EMPLEO_CASE_001", description = "Empleo Case Delegacion")
-    public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException {
+    public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException, InterruptedException {
         EmpleoPageObject preEmp = this.buildPageObject(EmpleoPageObject.class);
         preEmp.openURL("https://www.cast-info.es/empleo/");
         preEmp.waitForPageLoaded(1L);
@@ -259,7 +263,7 @@ public class ITCastExamples extends TestCase {
     public void checkEmpleoEmail() throws RobotestException, InterruptedException {
         EmpleoPageObject preEmp = this.buildPageObject(EmpleoPageObject.class);
         preEmp.openURL("https://www.cast-info.es/empleo/");
-        preEmp.waitForPageLoaded(1L);
+        Thread.sleep(1000L);
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preEmp.checkEmpleoEmail(preHome);
     }
@@ -268,13 +272,15 @@ public class ITCastExamples extends TestCase {
      * Check Noticias page Post links
      *
      * @throws RobotestException
+     * @throws InterruptedException 
+     * @throws URISyntaxException 
      */
     @Test
     @RobotestCase(tag = "NOTICIAS_CASE_001", description = "Noticias Case Post")
-    public void checkNoticiasPost() throws RobotestException {
+    public void checkNoticiasPost() throws RobotestException, InterruptedException, URISyntaxException {
         NoticiasPageObject preNot = this.buildPageObject(NoticiasPageObject.class);
         preNot.openURL("https://www.cast-info.es/noticias/");
-        preNot.waitForPageLoaded(1L);
+        Thread.sleep(1000L);
         preNot.checkNoticiasPost();
     }
 
@@ -282,10 +288,11 @@ public class ITCastExamples extends TestCase {
      * Check Noticias page search form and performa search action
      *
      * @throws RobotestException
+     * @throws InterruptedException 
      */
     @Test
     @RobotestCase(tag = "NOTICIAS_CASE_001", description = "Noticias Case Search")
-    public void checkNoticiasSearch() throws RobotestException {
+    public void checkNoticiasSearch() throws RobotestException, InterruptedException {
         NoticiasPageObject preNot = this.buildPageObject(NoticiasPageObject.class);
         preNot.openURL("https://www.cast-info.es/noticias/");
         preNot.waitForPageLoaded(1L);

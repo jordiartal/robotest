@@ -217,8 +217,12 @@ public class HomePageObject extends PageObject {
 	 */
 	@RobotestStep(tag = "HOME_STEP_009", description = "Check Slider Buttons Home Page", captureScreenShootAtEndStep = true)
 	public void checkSliderButtons() throws RobotestException, InterruptedException {
+		
 		this.findElementBy(By.xpath("/html/body/div[4]/div/div[2]/div/button[2]")).click();
-		Thread.sleep(1000L);
+        Thread.sleep(3000L);
+    	this.findElementBy(By.xpath("//*[@id=\"cookie_action_close_header\"]")).click();
+        Thread.sleep(2000L);
+		
 		List<WebElement> listElem = this.getDriver().findElements(By.xpath("//div[@class='et-pb-controllers']/a"));
 		if (!listElem.isEmpty()) {
 			String parentWindow = this.getDriver().getWindowHandle();
@@ -253,10 +257,13 @@ public class HomePageObject extends PageObject {
 	 */
 	@RobotestStep(tag = "HOME_STEP_010", description = "Check Cookies", captureScreenShootAtEndStep = true)
 	public void checkCastCookies() throws RobotestException, InterruptedException {
+
 		this.findElementBy(By.xpath("/html/body/div[4]/div/div[2]/div/button[2]")).click();
-		Thread.sleep(1000L);
-		WebElement elem = this.findElementBy(By.xpath("//div[@id='cookie-law-info-bar']/span/a"));
-		elem.click();
+        Thread.sleep(3500L);
+    	
+        this.findElementBy(By.xpath("//*[@id=\"cookie_action_close_header\"]")).click();
+        Thread.sleep(2000L);		
+		
 		Set<Cookie> listCookies = this.listOfCookiesAvailable();
 		if (!listCookies.isEmpty()) {
 			for (Cookie cookie : listCookies) {
@@ -265,6 +272,7 @@ public class HomePageObject extends PageObject {
 		} else {
 			HomePageObject.LOG.info("No cookies available");
 		}
+		
 	}
 
 	/**
@@ -307,11 +315,12 @@ public class HomePageObject extends PageObject {
 			// go to privacy policy and accept
 			if (this.isElementVisible(By.xpath("/html/body/div[4]/div/div[2]/div/button[2]"))){
 				this.findElementBy(By.xpath("/html/body/div[4]/div/div[2]/div/button[2]")).click();
-				Thread.sleep(2000L);
+				Thread.sleep(3000L);
 			}
 			else {
 				Assert.assertTrue("privacy policy accept button is not visible in this page", false);
 			}
+			
 			// go to cookie policy and accept
 			if (this.isElementVisible(By.xpath("//*[@id=\"cookie_action_close_header\"]"))) {
 				this.findElementBy(By.xpath("//*[@id=\"cookie_action_close_header\"]")).click();

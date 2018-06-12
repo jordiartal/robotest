@@ -21,7 +21,7 @@ public class EmpleoPageObject extends PageObject {
      * Check Links on Empleo Sections
      */
     @RobotestStep(tag = "EMPLEO_STEP_001", description = "Check Empleo Delegacion", captureScreenShootAtEndStep = true)
-    public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException {
+    public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException, InterruptedException {
         String handler = this.getDriver().getWindowHandle();
         JavascriptExecutor js = (JavascriptExecutor) this.getDriver();
         List<WebElement> listElem = this.findElementsBy(By.xpath("//*[@id=\"post-1512\"]/div/div[5]/div"));
@@ -36,11 +36,11 @@ public class EmpleoPageObject extends PageObject {
                 }
                 js.executeScript("window.open('" + link + "','_blank');");
                 this.switchToAnotherWindow();
+                Thread.sleep(3000L);
                 URI linkDomain = new URI(link);
                 URI actualDomain = new URI(this.getCurrentUrl());
                 Boolean okPage = actualDomain.getHost().contains(linkDomain.getHost());
-                Assert.assertTrue("destination page [" + actualDomain.getHost() + "] is not the same as [" + linkDomain.getHost() + "]",
-                                  okPage);
+                Assert.assertTrue("destination page [" + actualDomain.getHost() + "] is not the same as [" + linkDomain.getHost() + "]", okPage);
                 this.getDriver().close();
                 this.getDriver().switchTo().window(handler);
             }
