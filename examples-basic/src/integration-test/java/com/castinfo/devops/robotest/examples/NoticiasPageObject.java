@@ -20,8 +20,6 @@ import com.castinfo.devops.robotest.annot.RobotestStep;
  */
 public class NoticiasPageObject extends PageObject {
 
-    public static final String PRE_HOME_CFG = "PRE_HOME_CFG";
-
     /*
      * Check Noticias Links
      */

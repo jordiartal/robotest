@@ -12,15 +12,15 @@ import com.castinfo.devops.robotest.PageObject;
 import com.castinfo.devops.robotest.RobotestException;
 import com.castinfo.devops.robotest.annot.RobotestStep;
 
+import utils.Utils;
+
 /**
  *
  * @author Jordi.Artal
  *
  */
-public class EmpresaPageObject extends PageObject {
-
-    public static final String PRE_HOME_CFG = "PRE_HOME_CFG";
-
+public class EmpresaPageObject extends PageObject { 
+    		
     /*
      * Check Page Title
      */
@@ -37,20 +37,20 @@ public class EmpresaPageObject extends PageObject {
      */
     @RobotestStep(tag = "EMPRESA_STEP_002", description = "Check Empresa Sections", captureScreenShootAtEndStep = true)
     public void checkSections() throws RobotestException {
-        Assert.assertNotNull("This element doesn't exist",
+        Assert.assertNotNull(Utils.MESSAGE_ELEMENT.getStringValue(),
                              this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[3]/div/div[2]")));
-        this.moveToElement(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[2]")));
-        this.click(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[3]/div/div[2]")));
+        this.moveToElement(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[2]")));
+        this.click(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[3]/div/div[2]")));
 
-        Assert.assertNotNull("This element doesn't exist",
+        Assert.assertNotNull(Utils.MESSAGE_ELEMENT.getStringValue(),
                              this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[3]/div/div[3]")));
-        this.moveToElement(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[2]")));
-        this.click(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[3]/div/div[3]")));
+        this.moveToElement(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[2]")));
+        this.click(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[3]/div/div[3]")));
 
-        Assert.assertNotNull("This element doesn't exist",
+        Assert.assertNotNull(Utils.MESSAGE_ELEMENT.getStringValue(),
                              this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[3]/div/div[4]")));
-        this.moveToElement(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[2]")));
-        this.click(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[3]/div/div[4]")));
+        this.moveToElement(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[2]")));
+        this.click(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[3]/div/div[4]")));
     }
 
     /*
@@ -76,15 +76,15 @@ public class EmpresaPageObject extends PageObject {
                   description = "Check Empresa clientes arrows",
                   captureScreenShootAtEndStep = true)
     public void checkClientesArrows() throws RobotestException {
-        this.moveToElement(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[5]")));
+        this.moveToElement(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[5]")));
 
-        Assert.assertNotNull("This element doesn't exist",
-                             this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[5]/div/div/div[1]/a[1]")));
-        this.click(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[5]/div/div/div[1]/a[1]")));
+        Assert.assertNotNull(Utils.MESSAGE_ELEMENT.getStringValue(),
+                             this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[5]/div/div/div[1]/a[1]")));
+        this.click(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[5]/div/div/div[1]/a[1]")));
 
-        Assert.assertNotNull("This element doesn't exist",
-                             this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[5]/div/div/div[1]/a[2]")));
-        this.click(this.findElementBy(By.xpath("//*[@id=\"post-659\"]/div/div[5]/div/div/div[1]/a[2]")));
+        Assert.assertNotNull(Utils.MESSAGE_ELEMENT.getStringValue(),
+                             this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[5]/div/div/div[1]/a[2]")));
+        this.click(this.findElementBy(By.xpath(Utils.POST_659.getStringValue()+"[5]/div/div/div[1]/a[2]")));
     }
 
     /*
@@ -95,7 +95,7 @@ public class EmpresaPageObject extends PageObject {
                   captureScreenShootAtEndStep = true)
     public void checkClientesLinks() throws RobotestException {
         List<WebElement> linkList = this.getDriver()
-                                        .findElements(By.xpath("//*[@id=\"post-659\"]/div/div[5]/div/div//a"));
+                                        .findElements(By.xpath(Utils.POST_659.getStringValue()+"[5]/div/div//a"));
         if (!linkList.isEmpty()) {
             List<String> hrefList = new ArrayList<>();
             for (WebElement elem : linkList) {
@@ -125,20 +125,20 @@ public class EmpresaPageObject extends PageObject {
 		this.findElementBy(By.xpath("//*[@id=\"cookie_action_close_header\"]")).click();
 		Thread.sleep(2000L);
     	
-        this.moveToElement(this.getDriver().findElement(By.xpath("//*[@id=\"post-659\"]/div/div[7]/div")));
+        this.moveToElement(this.getDriver().findElement(By.xpath(Utils.POST_659.getStringValue()+"[7]/div")));
         List<WebElement> elems = this.getDriver()
-                                     .findElements(By.xpath("//*[@id=\"post-659\"]/div/div[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[3]/div"));
+                                     .findElements(By.xpath(Utils.POST_659.getStringValue()+"[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[3]/div"));
         if (!elems.isEmpty()) {
             for (WebElement elem : elems) {
                 this.moveToElement(elem);
                 elem.click();
                 Thread.sleep(1000L);
                 if (this.getDriver()
-                        .findElement(By.xpath("//*[@id=\"post-659\"]/div/div[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[4]/div"))
+                        .findElement(By.xpath(Utils.POST_659.getStringValue()+"[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[4]/div"))
                         .isDisplayed()) {
                     Thread.sleep(1000L);
                     this.getDriver()
-                        .findElement(By.xpath("//*[@id=\"post-659\"]/div/div[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[4]/div/div[3]"))
+                        .findElement(By.xpath(Utils.POST_659.getStringValue()+"[7]/div/div[1]/div/div/div[1]/div[3]/div[2]/div[4]/div/div[3]"))
                         .click();
                     Assert.assertTrue(true);
                 } else {

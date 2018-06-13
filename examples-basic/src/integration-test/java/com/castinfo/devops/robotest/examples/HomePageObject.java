@@ -17,6 +17,8 @@ import com.castinfo.devops.robotest.RobotestException;
 import com.castinfo.devops.robotest.annot.RobotestStep;
 import com.castinfo.devops.robotest.config.RobotestConfiguration;
 
+import utils.Utils;
+
 /**
  * Test Cases related to Cast-Info Home Page
  *
@@ -25,9 +27,8 @@ import com.castinfo.devops.robotest.config.RobotestConfiguration;
  */
 public class HomePageObject extends PageObject {
 
-	public static final String PRE_HOME_CFG = "PRE_HOME_CFG";
 	private static final Logger LOG = LoggerFactory.getLogger(RobotestConfiguration.class);
-
+	
 	/**
 	 * Compares current page title with a literal expression
 	 *
@@ -42,81 +43,30 @@ public class HomePageObject extends PageObject {
 	}
 
 	/**
-	 * Performs search with a String
-	 *
-	 * @throws RobotestException
-	 */
-	@RobotestStep(tag = "HOME_STEP_002", description = "Check search Contacto", captureScreenShootAtEndStep = true)
-	public void checkSearchContacto() throws RobotestException {
-//		String searchParameter = "contacto";
-//		this.getDriver().manage().window().maximize();
-//		WebElement search = this.getDriver().findElement(By.id("et_top_search"));
-//		if (search != null) {
-//			this.click(search);
-//			WebElement input = this.getDriver().findElement(By.tagName("input"));
-//			if (input != null) {
-//				input.clear();
-//				input.sendKeys(searchParameter);
-//				input.submit();
-//			} else {
-//				throw new RobotestException("There is no input parameter in Search Form");
-//			}
-//		} else {
-//			throw new RobotestException("There is none Search Form");
-//		}
-	}
-
-	/**
-	 * Confirms that Contacto page exists
-	 *
-	 * @throws RobotestException
-	 */
-	@RobotestStep(tag = "HOME_STEP_003", description = "Check go Contacto Page", captureScreenShootAtEndStep = true)
-	public void checkGoContacto() throws RobotestException {
-		// List<WebElement> results = this.getDriver().findElements(By.id("left-area"));
-		// if (results != null) {
-		// List<WebElement> hrefs = results.get(0).findElements(By.tagName("a"));
-		// if (hrefs != null) {
-		// StringBuffer sb = new StringBuffer("https://www.cast-info.es/contacto/");
-		// for (WebElement element : hrefs) {
-		// if (element.getAttribute("href").contentEquals(sb)) {
-		// this.openURL("https://www.cast-info.es/contacto/");
-		// break;
-		// }
-		// }
-		// } else {
-		// throw new RobotestException("There is no HTTP 'a' elements finded");
-		// }
-		// } else {
-		// throw new RobotestException("No search results");
-		// }
-	}
-
-	/**
 	 * Fills Contacto form boxes
 	 *
 	 * @throws RobotestException
 	 */
-	@RobotestStep(tag = "HOME_STEP_005", description = "Check Contacto form works", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_002", description = "Check Contacto form works", captureScreenShootAtEndStep = true)
 	public void checkUseForm() throws RobotestException {
 		WebElement name = this.getDriver().findElement(By.xpath("//*[@id=\"input_2_1_3\"]"));
 		this.moveToElement(name);
 		name.clear();
 		name.sendKeys("test_name");
-		Assert.assertTrue("insertion error in contact name", name.getAttribute("value").equals("test_name"));
+		Assert.assertTrue("insertion error in contact name", name.getAttribute(Utils.VALUE.getStringValue()).equals("test_name"));
 
 		WebElement email = this.getDriver().findElement(By.xpath("//*[@id=\"input_2_2\"]"));
 		this.moveToElement(email);
 		email.clear();
 		email.sendKeys("test_email");
-		Assert.assertTrue("insertion error in contact eMail", email.getAttribute("value").equals("test_email"));
+		Assert.assertTrue("insertion error in contact eMail", email.getAttribute(Utils.VALUE.getStringValue()).equals("test_email"));
 
 		WebElement message = this.getDriver().findElement(By.xpath("//*[@id=\"input_2_11\"]"));
 		this.moveToElement(message);
 		message.clear();
 		message.sendKeys(
 				"test message: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mauris erat, vulputate at fermentum ac, lacinia sed sem.");
-		Assert.assertTrue("insertion error in contact message", message.getAttribute("value").equals(
+		Assert.assertTrue("insertion error in contact message", message.getAttribute(Utils.VALUE.getStringValue()).equals(
 				"test message: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mauris erat, vulputate at fermentum ac, lacinia sed sem."));
 
 		WebElement rgpd = this.getDriver().findElement(By.xpath("//*[@id=\"choice_2_10_1\"]"));
@@ -131,7 +81,7 @@ public class HomePageObject extends PageObject {
 	 *
 	 * @throws RobotestException
 	 */
-	@RobotestStep(tag = "HOME_STEP_006", description = "Check Top Menu exists", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_003", description = "Check Top Menu exists", captureScreenShootAtEndStep = true)
 	public void checkTopMenu() throws RobotestException {
 		String parameter = "top-menu";
 		this.getDriver().manage().window().maximize();
@@ -144,7 +94,7 @@ public class HomePageObject extends PageObject {
 	 *
 	 * @throws RobotestException
 	 */
-	@RobotestStep(tag = "HOME_STEP_007", description = "Check top Menu Links", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_004", description = "Check top Menu Links", captureScreenShootAtEndStep = true)
 	public void checkTopMenuLinks() throws RobotestException {
 		List<WebElement> linkList = this.getDriver().findElements(By.xpath("//nav/ul/li/a[@href]"));
 		if (!linkList.isEmpty()) {
@@ -167,23 +117,13 @@ public class HomePageObject extends PageObject {
 	 *
 	 * @throws RobotestException
 	 */
-	@RobotestStep(tag = "HOME_STEP_008", description = "Check internal Links Home Page", captureScreenShootAtEndStep = true)
-	public void checkAllLinks() throws RobotestException {
+	@RobotestStep(tag = "HOME_STEP_005", description = "Check internal Links Home Page", captureScreenShootAtEndStep = true)
+	public void checkHomeLinks() throws RobotestException {
 		List<WebElement> linkList = this.getDriver().findElements(By.xpath("//a[@href]"));
 		if (linkList != null) {
 			List<String> hrefList = new ArrayList<>();
-			for (WebElement elem : linkList) {
-				String href = "https://www.cast-info.es";
-				try {
-					href = elem.getAttribute("href");
-				} catch (StaleElementReferenceException e) {
-					HomePageObject.LOG.error(e.toString());
-				}
-				if (href != null) {
-					hrefList.add(href);
-				}
-			}
-
+			homeLinksFor(linkList, hrefList);
+			
 			// Pages that exceeds getGeneralWaitTimoutSeconds has been excluded
 			int i = 0;
 			for (String href : hrefList) {
@@ -208,6 +148,21 @@ public class HomePageObject extends PageObject {
 		}
 
 	}
+	
+	private List<String> homeLinksFor(List<WebElement> linkList, List<String> hrefList) {
+		for (WebElement elem : linkList) {
+			String href = "https://www.cast-info.es";
+			try {
+				href = elem.getAttribute("href");
+			} catch (StaleElementReferenceException e) {
+				HomePageObject.LOG.error(e.toString());
+			}
+			if (href != null) {
+				hrefList.add(href);
+			}
+		}
+		return hrefList;
+	}
 
 	/**
 	 * Go to Home page slider buttons and verify its links
@@ -215,7 +170,7 @@ public class HomePageObject extends PageObject {
 	 * @throws RobotestException
 	 * @throws InterruptedException
 	 */
-	@RobotestStep(tag = "HOME_STEP_009", description = "Check Slider Buttons Home Page", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_006", description = "Check Slider Buttons Home Page", captureScreenShootAtEndStep = true)
 	public void checkSliderButtons() throws RobotestException, InterruptedException {
 
 		closePrivacyMessages();
@@ -252,7 +207,7 @@ public class HomePageObject extends PageObject {
 	 * @throws RobotestException
 	 * @throws InterruptedException
 	 */
-	@RobotestStep(tag = "HOME_STEP_010", description = "Check Cookies", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_007", description = "Check Cookies", captureScreenShootAtEndStep = true)
 	public void checkCastCookies() throws RobotestException, InterruptedException {
 
 		closePrivacyMessages();
@@ -272,12 +227,11 @@ public class HomePageObject extends PageObject {
 	 *
 	 * @throws RobotestException
 	 */
-	@RobotestStep(tag = "HOME_STEP_011", description = "Check Create Cookie", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_008", description = "Check Create Cookie", captureScreenShootAtEndStep = true)
 	public void checkCreateCookie() throws RobotestException {
-		String name = "testCreateCookie";
-		this.addCookie(name, "description=test value cookie");
-		HomePageObject.LOG.info("cookie with: " + "testCreateCookie" + " and values: "
-				+ this.getCookieValueByName("testCreateCookie") + " has been created.");
+		this.addCookie(Utils.TEST_CREATE_COOKIE.getStringValue(), "description=test value cookie");
+		HomePageObject.LOG.info("cookie with: " + Utils.TEST_CREATE_COOKIE.getStringValue() + " and values: "
+				+ this.getCookieValueByName(Utils.TEST_CREATE_COOKIE.getStringValue()) + " has been created.");
 	}
 
 	/**
@@ -285,7 +239,7 @@ public class HomePageObject extends PageObject {
 	 *
 	 * @throws RobotestException
 	 */
-	@RobotestStep(tag = "HOME_STEP_012", description = "Check Cast Cookie", captureScreenShootAtEndStep = true)
+	@RobotestStep(tag = "HOME_STEP_009", description = "Check Cast Cookie", captureScreenShootAtEndStep = true)
 	public void checkDeleteCastCookies() throws RobotestException {
 		Set<Cookie> listCookies = this.listOfCookiesAvailable();
 		for (Cookie cookie : listCookies) {

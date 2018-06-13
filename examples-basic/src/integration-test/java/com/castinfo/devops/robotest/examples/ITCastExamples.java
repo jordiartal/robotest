@@ -1,6 +1,7 @@
 package com.castinfo.devops.robotest.examples;
 
 import java.net.URISyntaxException;
+import java.util.Properties;
 
 import javax.xml.xpath.XPathExpressionException;
 
@@ -10,8 +11,11 @@ import org.junit.runner.RunWith;
 import com.castinfo.devops.robotest.RobotestException;
 import com.castinfo.devops.robotest.TestCase;
 import com.castinfo.devops.robotest.annot.RobotestCase;
+import com.castinfo.devops.robotest.annot.RobotestConfig;
 import com.castinfo.devops.robotest.annot.RobotestSuite;
 import com.castinfo.devops.robotest.junit.JUnitCaseRunner;
+
+import utils.Utils;
 
 /**
  * Robotest Shop Suite that runs a series of tests of Cast-info web page
@@ -19,10 +23,14 @@ import com.castinfo.devops.robotest.junit.JUnitCaseRunner;
  * @author Jordi.Artal
  *
  */
-@RobotestSuite(tag = "CASTINFO_SUITE_001", description = "Standad navigetion through Cast-Info page")
+@RobotestSuite(	tag = "CASTINFO_SUITE_001", 
+				description = "Standad navigation through Cast-Info page", 
+				configElements = { @RobotestConfig(	key = "WEB_TO_TEST", 
+													type = Properties.class, 
+													resource = "system://CAST-INFO-WEB")})
 @RunWith(JUnitCaseRunner.class)
 public class ITCastExamples extends TestCase {
-
+	
     /**
      * Checks Home Page title
      *
@@ -32,7 +40,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "HOME_CASE_001", description = "Home Case Check Title")
     public void checkHomeTitle() throws RobotestException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
-        preHome.openURL("http://www.cast-info.es");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue());
+        preHome.openURL(urlToTest);
         preHome.waitForPageLoaded(1L);
         preHome.checkTitle();
     }
@@ -49,7 +58,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "HOME_CASE_002", description = "Home Case Check Form Contacto")
     public void checkHomeContacto() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
-        preHome.openURL("http://www.cast-info.es");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue());
+        preHome.openURL(urlToTest);
         preHome.waitForPageLoaded(1L);
         preHome.checkGotoContacto();
         preHome.checkUseForm();
@@ -64,7 +74,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "HOME_CASE_003", description = "Home Case Check top-menu-items")
     public void checkHomeTopMenuItems() throws RobotestException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
-        preHome.openURL("http://www.cast-info.es");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue());
+        preHome.openURL(urlToTest);
         preHome.waitForPageLoaded(1L);
         preHome.checkTopMenu();
         preHome.checkTopMenuLinks();
@@ -79,9 +90,10 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "HOME_CASE_004", description = "Home Case Check all links")
     public void checkHomeInternalLinks() throws RobotestException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
-        preHome.openURL("http://www.cast-info.es");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue());
+        preHome.openURL(urlToTest);
         preHome.waitForPageLoaded(1L);
-        preHome.checkAllLinks();
+        preHome.checkHomeLinks();
     }
 
     /**
@@ -94,7 +106,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "HOME_CASE_005", description = "Home Case Slider Controls")
     public void checkHomeSliderControls() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
-        preHome.openURL("http://www.cast-info.es");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue());
+        preHome.openURL(urlToTest);
         preHome.getDriver().manage().window().maximize();
         Thread.sleep(1000L);
         preHome.checkSliderButtons();
@@ -110,7 +123,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "HOME_CASE_006", description = "Home Case Cookies")
     public void checkHomeCookies() throws RobotestException, InterruptedException {
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
-        preHome.openURL("http://www.cast-info.es");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue());
+        preHome.openURL(urlToTest);
         Thread.sleep(2000L);
         preHome.checkCastCookies();
         preHome.checkCreateCookie();
@@ -126,7 +140,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPRESA_CASE_001", description = "Empresa Case Title")
     public void checkEmpTitle() throws RobotestException {
         EmpresaPageObject preEmp = this.buildPageObject(EmpresaPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empresa/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPRESA.getStringValue();
+        preEmp.openURL(urlToTest);
         preEmp.waitForPageLoaded(1L);
         preEmp.checkTitle();
     }
@@ -140,7 +155,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPRESA_CASE_002", description = "Empresa Case Sections")
     public void checkEmpSections() throws RobotestException {
         EmpresaPageObject preEmp = this.buildPageObject(EmpresaPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empresa/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPRESA.getStringValue();
+        preEmp.openURL(urlToTest);
         preEmp.waitForPageLoaded(1L);
         preEmp.checkSections();
     }
@@ -154,7 +170,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPRESA_CASE_003", description = "Empresa Case Calidad Links")
     public void checkEmpCalidad() throws RobotestException {
         EmpresaPageObject preEmp = this.buildPageObject(EmpresaPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empresa/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPRESA.getStringValue();
+        preEmp.openURL(urlToTest);
         preEmp.waitForPageLoaded(1L);
         preEmp.checkCalidadLinks();
     }
@@ -168,7 +185,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPRESA_CASE_004", description = "Empresa Case Clients")
     public void checkEmpClients() throws RobotestException {
         EmpresaPageObject preEmp = this.buildPageObject(EmpresaPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empresa/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPRESA.getStringValue();
+        preEmp.openURL(urlToTest);
         preEmp.waitForPageLoaded(1L);
         preEmp.checkClientesArrows();
         preEmp.checkClientesLinks();
@@ -184,7 +202,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPRESA_CASE_005", description = "Empresa Case Google Maps")
     public void checkEmpGoogleMaps() throws RobotestException, InterruptedException {
         EmpresaPageObject preEmp = this.buildPageObject(EmpresaPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empresa/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPRESA.getStringValue();
+        preEmp.openURL(urlToTest);
         preEmp.waitForPageLoaded(1L);
         preEmp.checkMaps();
     }
@@ -198,7 +217,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "SOLUCIONES_CASE_001", description = "Soluciones Case Link List")
     public void checkSolucionesLinkList() throws RobotestException {
         SolucionesPageObject preSol = this.buildPageObject(SolucionesPageObject.class);
-        preSol.openURL("https://www.cast-info.es/soluciones/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+"/soluciones/";
+        preSol.openURL(urlToTest);
         preSol.waitForPageLoaded(1L);
         preSol.checkLinkList();
     }
@@ -213,7 +233,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "CLIENTES_CASE_001", description = "Clientes Case Link List")
     public void checkClientesContacto() throws RobotestException, InterruptedException {
         ClientesPageObject preCli = this.buildPageObject(ClientesPageObject.class);
-        preCli.openURL("https://www.cast-info.es/clientes/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.CLIENTES.getStringValue();
+        preCli.openURL(urlToTest);
         Thread.sleep(3000L);
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preCli.checkContacto(preHome);
@@ -230,7 +251,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "CLIENTES_CASE_002", description = "Clientes Case Link List")
     public void checkClientesLinks() throws RobotestException, InterruptedException, URISyntaxException {
         ClientesPageObject preCli = this.buildPageObject(ClientesPageObject.class);
-        preCli.openURL("https://www.cast-info.es/clientes/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.CLIENTES.getStringValue();
+        preCli.openURL(urlToTest);
         Thread.sleep(1000L);
         preCli.checkClientesLinks();
     }
@@ -246,7 +268,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPLEO_CASE_001", description = "Empleo Case Delegacion")
     public void checkEmpleoDelegacion() throws RobotestException, URISyntaxException, InterruptedException {
         EmpleoPageObject preEmp = this.buildPageObject(EmpleoPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empleo/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPLEO.getStringValue();
+        preEmp.openURL(urlToTest);
         preEmp.waitForPageLoaded(1L);
         preEmp.checkEmpleoDelegacion();
     }
@@ -261,7 +284,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "EMPLEO_CASE_002", description = "Empleo Case eMail")
     public void checkEmpleoEmail() throws RobotestException, InterruptedException {
         EmpleoPageObject preEmp = this.buildPageObject(EmpleoPageObject.class);
-        preEmp.openURL("https://www.cast-info.es/empleo/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.EMPLEO.getStringValue();
+        preEmp.openURL(urlToTest);
         Thread.sleep(1000L);
         HomePageObject preHome = this.buildPageObject(HomePageObject.class);
         preEmp.checkEmpleoEmail(preHome);
@@ -278,7 +302,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "NOTICIAS_CASE_001", description = "Noticias Case Post")
     public void checkNoticiasPost() throws RobotestException, InterruptedException, URISyntaxException {
         NoticiasPageObject preNot = this.buildPageObject(NoticiasPageObject.class);
-        preNot.openURL("https://www.cast-info.es/noticias/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.NOTICIAS.getStringValue();
+        preNot.openURL(urlToTest);
         Thread.sleep(1000L);
         preNot.checkNoticiasPost();
     }
@@ -293,7 +318,8 @@ public class ITCastExamples extends TestCase {
     @RobotestCase(tag = "NOTICIAS_CASE_001", description = "Noticias Case Search")
     public void checkNoticiasSearch() throws RobotestException, InterruptedException {
         NoticiasPageObject preNot = this.buildPageObject(NoticiasPageObject.class);
-        preNot.openURL("https://www.cast-info.es/noticias/");
+        String urlToTest = this.getSuiteTestPropertyCfg(Utils.WEB_TO_TEST.getStringValue(), Utils.CAST_INFO_WEB.getStringValue())+Utils.NOTICIAS.getStringValue();
+        preNot.openURL(urlToTest);
         preNot.waitForPageLoaded(1L);
         preNot.checkNoticiasSearch();
     }

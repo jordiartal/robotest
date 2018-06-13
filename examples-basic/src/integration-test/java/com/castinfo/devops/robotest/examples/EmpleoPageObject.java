@@ -15,8 +15,6 @@ import com.castinfo.devops.robotest.annot.RobotestStep;
 
 public class EmpleoPageObject extends PageObject {
 
-    public static final String PRE_HOME_CFG = "PRE_HOME_CFG";
-
     /*
      * Check Links on Empleo Sections
      */

@@ -21,8 +21,6 @@ import com.castinfo.devops.robotest.annot.RobotestStep;
  */
 public class ClientesPageObject extends PageObject {
 
-    public static final String PRE_HOME_CFG = "PRE_HOME_CFG";
-
     /*
      * Check Clientes Contact form
      */
